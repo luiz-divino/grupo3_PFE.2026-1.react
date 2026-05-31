@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+    --primary-blue: #003399;
+    --text-color: #444;
+    --bg-light: #f4f7ff;
+    --accent-yellow: #ffcc00;
+}
+
+.about-section,
+.mission-section {
+    font-family: "Montserrat", sans-serif;
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+
+.container-quem-somos {
+    width: min(100%, 1200px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+}
+
+.hero-banner-quem-somos {
+    min-height: 420px;
+    height: auto;
+    padding: 72px 0;
+    background:
+        linear-gradient(
+            to right,
+            rgba(26, 35, 126, 0.9),
+            rgba(26, 35, 126, 0.4)
+        ),
+        url("/images/fundo-hero-quem-somos.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.content-wrapper {
+    max-width: 640px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffc107;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.hero-banner-quem-somos h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+}
+
+.hero-banner-quem-somos p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* =============================================
+   MISSION SECTION
+   ============================================= */
+
+.mission-section {
+    background-color: var(--bg-light);
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.mission-section .container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.mission-content {
+    flex: 1;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    color: var(--primary-blue);
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.subtitle::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background-color: var(--accent-yellow);
+    margin-right: 10px;
+}
+
+.title {
+    color: var(--primary-blue);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.description p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.mission-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.mission-image img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 1024px) {
+    .mission-section .container {
+        gap: 36px;
+    }
+}
+
+@media (max-width: 860px) {
+    .mission-section .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mission-image img {
+        max-height: 360px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container-quem-somos {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-banner-quem-somos {
+        min-height: 0;
+        padding: 56px 0;
+    }
+
+    .hero-banner-quem-somos h1 {
+        font-size: 30px;
+        line-height: 1.15;
+    }
+
+    .hero-banner-quem-somos p {
+        font-size: 15px;
+    }
+}
