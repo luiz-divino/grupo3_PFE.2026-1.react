@@ -1,0 +1,20 @@
+.hero {
+    position: relative;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background:
+        linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)),
+        url("../../assets/images/backgrounds/fundo-zul.jpg") center/cover
+            no-repeat;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.hero-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
