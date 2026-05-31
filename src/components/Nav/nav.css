@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap");
+
+
+:root {
+    --primary-blue: #003399; /* Ajuste conforme a paleta exata */
+    --text-color: #444;
+    --bg-light: #f4f7ff;
+    --accent-yellow: #ffcc00;
+}
+
+/*  =============================================
+    RESET BÁSICO
+    ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: "Readex Pro", sans-serif;
+}
+
+/* Typography (moved from css/style.css) */
+h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* =============================================
+   HEADER / NAV GLOBAL
+   ============================================= */
+.top-header {
+    background-color: #1a1a66;
+    padding: 14px 50px;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.logo img {
+    height: 52px;
+}
+
+.menu {
+    display: flex;
+    gap: 28px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-login {
+    border: 1.5px solid #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #ffffff;
+    color: #0b1b5b;
+}
+
+.btn-register {
+    background-color: #ffffff;
+    color: #0b1b5b;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: opacity 0.3s;
+}
+
+.btn-register:hover {
+    opacity: 0.9;
+}
+
+.menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.menu-toggle span {
+    width: 20px;
+    height: 2px;
+    display: block;
+    background-color: currentColor;
+    border-radius: 999px;
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
+}
+
+.nav-container.nav-open .menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-container.nav-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-container.nav-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+    .top-header {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
+@media (max-width: 860px) {
+    .top-header {
+        padding: 12px 20px;
+    }
+
+    .nav-container {
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+        order: 2;
+    }
+
+    .menu,
+    .actions {
+        display: none;
+        width: 100%;
+        order: 3;
+    }
+
+    .nav-container.nav-open .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding-top: 8px;
+    }
+
+    .nav-container.nav-open .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding-top: 8px;
+    }
+
+    .menu a,
+    .btn-login,
+    .btn-register {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo img {
+        height: 42px;
+    }
+}
+
+@media (max-width: 430px) {
+    .top-header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .logo img {
+        height: 38px;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
