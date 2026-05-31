@@ -6,7 +6,6 @@ import { QuemSomos } from "./pages/QuemSomos/QuemSomos";
 import { Blog } from "./pages/Blog/Blog";
 import { Contato } from "./pages/Contato/Contato";
 import { Cadastro } from "./pages/Cadastro/Cadastro";
-import { Footer } from "./components/Footer/Footer.jsx";
 
 export const Router = () => {
     return (
