@@ -8,11 +8,15 @@ import { Link } from "react-router-dom";
 export const Footer = () => {
     return (
         <>
-            <footer class="footer">
-                <div class="footer-container">
+            <footer className="footer">
+                <div className="footer-container">
                     {/* Coluna 1 - Logo + descrição */}
-                    <div class="footer-col">
-                        <img src={logo} alt="Logo ACB" class="footer-logo" />
+                    <div className="footer-col">
+                        <img
+                            src={logo}
+                            alt="Logo ACB"
+                            className="footer-logo"
+                        />
                         <p>
                             A ACB tem como propósito promover, fortalecer,
                             congregar e representar profissionais que atuam como
@@ -21,7 +25,7 @@ export const Footer = () => {
                     </div>
 
                     {/* Coluna 2 - Institucional */}
-                    <div class="footer-col">
+                    <div className="footer-col">
                         <h3>Institucional</h3>
                         <ul>
                             <li>
@@ -40,7 +44,7 @@ export const Footer = () => {
                     </div>
 
                     {/* Coluna 3 - Conteúdo */}
-                    <div class="footer-col">
+                    <div className="footer-col">
                         <h3>Conteúdo</h3>
                         <ul>
                             <li>
@@ -50,7 +54,7 @@ export const Footer = () => {
                                 <Link to="/eventos">Eventos</Link>
                             </li>
                         </ul>
-                        <details class="footer-lgpd">
+                        <details className="footer-lgpd">
                             <summary>LGPD</summary>
                             <a
                                 href={privPdf}
@@ -70,7 +74,7 @@ export const Footer = () => {
                     </div>
 
                     {/* Coluna 4 - Contato */}
-                    <div class="footer-col">
+                    <div className="footer-col">
                         <h3>Contato</h3>
                         <p>Rua Exemplo, 123 - São Paulo, SP</p>
                         <p>(11) 1234-5678</p>
@@ -79,12 +83,12 @@ export const Footer = () => {
                 </div>
 
                 {/* Linha inferior */}
-                <div class="footer-bottom">
+                <div className="footer-bottom">
                     <p>
                         © 2024 Associação de Conselheiros do Brasil. Todos os
                         direitos reservados.
                     </p>
-                    <div class="footer-links">
+                    <div className="footer-links">
                         <a
                             href={privPdf}
                             target="_blank"
