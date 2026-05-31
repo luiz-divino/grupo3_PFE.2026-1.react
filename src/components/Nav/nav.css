@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap");
+
+.top-header {
+  background-color: #1a1a66;
+  padding: 14px 50px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+}
+
+.logo img {
+  height: 52px;
+}
+
+.menu {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-login,
+.btn-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-login a,
+.btn-register a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+/* "Entrar" — outline button */
+.btn-login {
+  background: transparent;
+  border: 1.5px solid #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-login a {
+  color: #ffffff;
+}
+
+.btn-login:hover {
+  background-color: #ffffff;
+}
+
+.btn-login:hover a {
+  color: #0b1b5b;
+}
+
+/* "Associe-se" — solid button */
+.btn-register {
+  background-color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-register a {
+  color: #0b1b5b;
+  font-weight: bold;
+}
+
+.btn-register:hover {
+  opacity: 0.9;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 860px) {
+  .top-header {
+    padding: 12px 20px;
+  }
+
+  .nav-container {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .menu,
+  .actions {
+    display: none;
+  }
+
+  .logo img {
+    height: 42px;
+  }
+}
+
+@media (max-width: 430px) {
+  .top-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .logo img {
+    height: 38px;
+  }
+}

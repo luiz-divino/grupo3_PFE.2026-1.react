@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Nav } from "./components/Nav/Nav.jsx";
+import { Footer } from "./components/Footer/Footer.jsx";
 import { Home } from "./pages/Home/Home";
 import { QuemSomos } from "./pages/QuemSomos/QuemSomos";
 import { Blog } from "./pages/Blog/Blog";
@@ -17,6 +18,7 @@ export const Router = () => {
                 <Route path="/contato" element={<Contato />} />
                 <Route path="/cadastro" element={<Cadastro />} />
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 };
