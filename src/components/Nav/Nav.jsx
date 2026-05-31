@@ -1,4 +1,3 @@
-import "./nav.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo-acb.png";
 import "./nav.css";
