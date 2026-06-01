@@ -1,4 +1,5 @@
 import "./quemSomos.css";
+import associados from "../../data/associados.json";
 
 export const QuemSomos = () => {
     return (
@@ -54,15 +55,43 @@ export const QuemSomos = () => {
                             </p>
                         </div>
                     </article>
+          <div className="mission-image">
+            <img
+              src="/images/reuniao-quem-somos.jpg"
+              alt="Equipe da ACBrasil reunida em uma sala de conferências discutindo dados em uma tela."
+            />
+          </div>
+        </div>
+      </section>
 
-                    <div className="mission-image">
-                        <img
-                            src="/images/reuniao-quem-somos.jpg"
-                            alt="Equipe da ACBrasil reunida em uma sala de conferências discutindo dados em uma tela."
-                        />
-                    </div>
-                </div>
-            </section>
-        </main>
-    );
+      <section className="associados-section">
+        <div className="container">
+          <h2 className="associados-title">
+          Associados fundadores
+          </h2>
+
+          <div className="associados-grid">
+            {associados.map((associado) => (
+              <a
+                key={associado.url}
+                href={associado.url}
+                target="_blank"
+                rel="noreferrer"
+                className="associado-card"
+              >
+                <img
+                  src={associado.foto}
+                  alt={associado.nome}
+                />
+
+                <h3>{associado.nome}</h3>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 };
+
+export default QuemSomos;
