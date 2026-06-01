@@ -6,6 +6,7 @@ import { QuemSomos } from "./pages/QuemSomos/QuemSomos";
 import { Blog } from "./pages/Blog/Blog";
 import { Contato } from "./pages/Contato/Contato";
 import { Cadastro } from "./pages/Cadastro/Cadastro";
+import { Entrar } from "./pages/Entrar/Entrar";
 
 export const Router = () => {
     return (
@@ -17,6 +18,7 @@ export const Router = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/contato" element={<Contato />} />
                 <Route path="/cadastro" element={<Cadastro />} />
+                <Route path="/entrar" element={<Entrar />} />
             </Routes>
             <Footer />
         </BrowserRouter>

@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+/* =============================================
+   FORM GROUP
+   ============================================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input {
+    border: 1.5px solid #d8e0f0;
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    color: #1a1a2e;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    max-width: 100%;
+}
+
+.form-group input::placeholder {
+    color: #aab4cc;
+}
+
+.form-group input:focus {
+    border-color: #1a4fc4;
+    box-shadow: 0 0 0 3px rgba(26, 79, 196, 0.1);
+}
+
+/* =============================================
+   SUBMIT BUTTON
+   ============================================= */
+
+.btn-enviar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #1a4fc4;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
+    width: 100%;
+}
+
+.btn-enviar:hover {
+    background-color: #1440a8;
+    transform: translateY(-1px);
+}
+
+.btn-enviar:active {
+    transform: translateY(0);
+}
+
+/* =============================================
+   LOGIN CARD
+   ============================================= */
+
+.mb-login-card {
+    background-color: #fff;
+    border: 1px solid #e4e9f2;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(26, 26, 102, 0.09);
+    overflow: hidden;
+}
+
+.mb-login-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid #f0f3fa;
+}
+
+.mb-login-icon {
+    width: 42px;
+    height: 42px;
+    background-color: #eef2fb;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a4fc4;
+    flex-shrink: 0;
+}
+
+.mb-login-header strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mb-login-header span {
+    font-size: 12.5px;
+    color: #888;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mb-login-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* =============================================
+   PASSWORD TOGGLE
+   ============================================= */
+
+.mb-toggle-senha {
+    position: absolute;
+    right: 12px;
+    bottom: 11px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aab4cc;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.mb-toggle-senha:hover {
+    color: #555;
+}
+
+/* =============================================
+   LOGIN OPTIONS (checkbox + forgot link)
+   ============================================= */
+
+.mb-login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -4px;
+}
+
+.mb-check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mb-check-label input {
+    accent-color: #1a4fc4;
+    width: 15px;
+    height: 15px;
+}
+
+.mb-esqueci {
+    font-size: 13px;
+    color: #1a4fc4;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mb-esqueci:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   BOTTOM MESSAGES
+   ============================================= */
+
+.mb-sem-conta {
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mb-sem-conta a {
+    color: #1a4fc4;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.mb-sem-conta a:hover {
+    text-decoration: underline;
+}
+
+.mb-seguro {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #aaa;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* =============================================
+   LOGIN PAGE LAYOUT
+   ============================================= */
+
+.login-section {
+    min-height: calc(100vh - 80px - 280px);
+    background-color: #f4f7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+}
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 460px;
+}
+
+.login-card-standalone {
+    width: 100%;
+    box-shadow: 0 8px 40px rgba(26, 26, 102, 0.12);
+}
+
+.login-voltar {
+    font-size: 13.5px;
+    color: #888;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.2s;
+}
+
+.login-voltar:hover {
+    color: #1a4fc4;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 500px) {
+    .login-section {
+        padding: 40px 16px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 430px) {
+    .mb-login-card {
+        padding: 24px 20px;
+    }
+
+    .mb-login-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

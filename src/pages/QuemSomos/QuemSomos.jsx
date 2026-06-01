@@ -11,10 +11,7 @@ export const QuemSomos = () => {
                             <span className="badge">INSTITUCIONAL</span>
                             <h1>Quem somos e por que existimos</h1>
                             <p>
-                                A ACBrasil nasceu da necessidade de uma entidade
-                                forte, independente e comprometida com o
-                                desenvolvimento do mercado de capitais no
-                                Brasil.
+                                Uma associação dedicada ao desenvolvimento de conselheiros, executivos e empresas por meio da educação, das melhores práticas de governança e da troca de experiências.
                             </p>
                         </div>
                     </div>

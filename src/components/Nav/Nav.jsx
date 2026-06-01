@@ -43,7 +43,7 @@ export const Nav = () => {
 
                     <div className="actions">
                         <span className="btn-login">
-                            <Link to="/login">Entrar</Link>
+                            <Link to="/entrar">Entrar</Link>
                         </span>
                         <span className="btn-register">
                             <Link to="/cadastro">Associe-se</Link>

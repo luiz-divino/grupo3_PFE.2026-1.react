@@ -27,7 +27,7 @@
 }
 
 .hero-banner-quem-somos {
-    min-height: 420px;
+    min-height: 500px;
     height: auto;
     padding: 72px 0;
     background:
@@ -74,12 +74,12 @@
 }
 
 /* =============================================
-   MISSION SECTION
+   NOSSA MISSÃO Section
    ============================================= */
 
 .mission-section {
   background-color: var(--bg-light);
-  padding: 80px 20px 50px;
+  padding: 80px 20px 60px;
   display: flex;
   justify-content: center;
 }
@@ -193,86 +193,159 @@
 
 
 /* =============================================
-   Associados fundadores sections
+   Associados fundadores section
    ============================================= */
 
-   .associados-section {
-  padding: 60px 0 100px;
+.associados-section {
+  padding: 80px 0;
   background: #f5f5f5;
 }
 
 .associados-section .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
+/* Título */
+
 .associados-title {
-  display: inline-block;
-  background: #000000;
-  color: #ffffff;
-  padding: 12px 18px;
-  margin-bottom: 50px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  position: relative;
+  display: flex;
+  align-items: center;
+
+  color: var(--primary-blue);
+
+  font-size: 1.75rem;
+  font-weight: 700;
+
+  margin-bottom: 35px;
+}
+
+.associados-title::before {
+  content: "";
+  width: 4px;
+  height: 28px;
+  background: var(--accent-yellow);
+  margin-right: 16px;
+  flex-shrink: 0;
 }
 
 .associados-title::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 18px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #000;
+  display: none;
 }
+
+/* Grid */
 
 .associados-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 36px;
+  grid-template-columns: repeat(4, 240px);
+  gap: 40px;
+  justify-content: center;
 }
+
+/* Card */
 
 .associado-card {
   position: relative;
   overflow: hidden;
+  border-radius: 14px;
   text-decoration: none;
   color: white;
   display: block;
+  background: #fff;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.associado-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
 }
 
 .associado-card img {
   width: 100%;
-  height: 420px;
-  object-fit: cover;
+  height: auto;
   display: block;
-  transition: transform 0.3s ease;
+
+  transition: transform 0.4s ease;
 }
+
+.associado-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Overlay */
 
 .associado-card::before {
   content: "";
   position: absolute;
   inset: 0;
+
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.05)
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0.05) 100%
   );
+
   z-index: 1;
 }
 
+/* Nome */
+
 .associado-card h3 {
   position: absolute;
-  left: 20px;
-  bottom: 20px;
+  left: 18px;
+  bottom: 18px;
+
   z-index: 2;
+
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 500;
+
+  font-size: 1.05rem;
+  font-weight: 600;
   line-height: 1.3;
+  letter-spacing: -0.01em;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-.associado-card:hover img {
-  transform: scale(1.03);
+/* Responsividade */
+
+@media (max-width: 1200px) {
+  .associados-grid {
+    grid-template-columns: repeat(3, 240px);
+  }
+}
+
+@media (max-width: 900px) {
+  .associados-grid {
+    grid-template-columns: repeat(2, 240px);
+  }
+}
+
+@media (max-width: 600px) {
+  .associados-section .container {
+    padding: 0 20px;
+  }
+
+  .associados-title {
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+  }
+
+  .associados-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .associado-card {
+    width: 100%;
+    max-width: 300px;
+  }
 }
