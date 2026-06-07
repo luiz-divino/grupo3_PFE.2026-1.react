@@ -1,22 +1,23 @@
 import "./quemSomos.css";
 import associados from "../../data/associados.json";
+import { Hero } from "../../components/Hero/Hero";
+import banner from "../../assets/images/fundo-hero-quem-somos.jpg";
 
 export const QuemSomos = () => {
     return (
         <main>
-            <section className="about-section">
-                <div className="hero-banner-quem-somos">
-                    <div className="container-quem-somos">
-                        <div className="content-wrapper">
-                            <span className="badge">INSTITUCIONAL</span>
-                            <h1>Quem somos e por que existimos</h1>
-                            <p>
-                                Uma associação dedicada ao desenvolvimento de conselheiros, executivos e empresas por meio da educação, das melhores práticas de governança e da troca de experiências.
-                            </p>
-                        </div>
-                    </div>
+            <Hero banner={banner}>
+                <div className="content-wrapper">
+                    <span className="badge">INSTITUCIONAL</span>
+                    <h1>Quem somos e por que existimos</h1>
+                    <p>
+                        Uma associação dedicada ao desenvolvimento de
+                        conselheiros, executivos e empresas por meio da
+                        educação, das melhores práticas de governança e da troca
+                        de experiências.
+                    </p>
                 </div>
-            </section>
+            </Hero>
 
             <section className="mission-section">
                 <div className="container">
@@ -52,43 +53,41 @@ export const QuemSomos = () => {
                             </p>
                         </div>
                     </article>
-          <div className="mission-image">
-            <img
-              src="/images/reuniao-quem-somos.jpg"
-              alt="Equipe da ACBrasil reunida em uma sala de conferências discutindo dados em uma tela."
-            />
-          </div>
-        </div>
-      </section>
+                    <div className="mission-image">
+                        <img
+                            src="/images/reuniao-quem-somos.jpg"
+                            alt="Equipe da ACBrasil reunida em uma sala de conferências discutindo dados em uma tela."
+                        />
+                    </div>
+                </div>
+            </section>
 
-      <section className="associados-section">
-        <div className="container">
-          <h2 className="associados-title">
-          Associados fundadores
-          </h2>
+            <section className="associados-section">
+                <div className="container">
+                    <h2 className="associados-title">Associados fundadores</h2>
 
-          <div className="associados-grid">
-            {associados.map((associado) => (
-              <a
-                key={associado.url}
-                href={associado.url}
-                target="_blank"
-                rel="noreferrer"
-                className="associado-card"
-              >
-                <img
-                  src={associado.foto}
-                  alt={associado.nome}
-                />
+                    <div className="associados-grid">
+                        {associados.map((associado) => (
+                            <a
+                                key={associado.url}
+                                href={associado.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="associado-card"
+                            >
+                                <img
+                                    src={associado.foto}
+                                    alt={associado.nome}
+                                />
 
-                <h3>{associado.nome}</h3>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+                                <h3>{associado.nome}</h3>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </main>
+    );
 };
 
 export default QuemSomos;
