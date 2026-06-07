@@ -30,13 +30,6 @@
     min-height: 500px;
     height: auto;
     padding: 72px 0;
-    background:
-        linear-gradient(
-            to right,
-            rgba(26, 35, 126, 0.9),
-            rgba(26, 35, 126, 0.4)
-        ),
-        url("/images/fundo-hero-quem-somos.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -62,16 +55,6 @@
     width: fit-content;
 }
 
-.hero-banner-quem-somos h1 {
-    font-size: 3rem;
-    line-height: 1.1;
-}
-
-.hero-banner-quem-somos p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    opacity: 0.9;
-}
 
 /* =============================================
    NOSSA MISSÃO Section
