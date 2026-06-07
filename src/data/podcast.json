@@ -1,0 +1,32 @@
+{
+    "conteudosYoutube": [
+        {
+            "id": 1,
+            "titulo": "Perspectivas 2026: os temas de RH que devem estar na pauta dos conselhos de administração",
+            "data": "30/01/2026",
+            "capa": "qegAIFMF7bI",
+            "url": "https://www.youtube.com/watch?v=qegAIFMF7bI"
+        },
+        {
+            "id": 2,
+            "titulo": "O Futuro da Saúde no Brasil: Longevidade, Acesso e Sustentabilidade",
+            "data": "28/03/2026",
+            "capa": "Yn2WBBxed04",
+            "url": "https://youtu.be/Yn2WBBxed04"
+        },
+        {
+            "id": 3,
+            "titulo": "Capatção de Investimentos em Startups",
+            "data": "17/06/2025",
+            "capa": "4z_avH842vs",
+            "url": "https://youtu.be/4z_avH842vs?list=PL98yzQXxvQjVDk60HdOp9dySACtnJErRO"
+        },
+        {
+            "id": 4,
+            "titulo": "O choque entre gerações: Desafios e oportunidades",
+            "data": "17/10/2025",
+            "capa": "q7B2JJcgAvY",
+            "url": "https://youtu.be/q7B2JJcgAvY"
+        }
+    ]
+}
