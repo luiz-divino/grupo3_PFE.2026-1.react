@@ -3,18 +3,69 @@
     height: 500px;
     display: flex;
     flex-direction: column;
-    background:
-        linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)),
-        url("../../assets/images/backgrounds/fundo-zul.jpg") center/cover
-            no-repeat;
     color: #fff;
     font-family: "Montserrat", sans-serif;
+    background-color: #081634;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(5, 18, 54, 0.9),
+        rgba(8, 41, 110, 0.72),
+        rgba(5, 18, 54, 0.92)
+    );
+    z-index: 0;
+    pointer-events: none;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
+}
+
+/* Padroniza tipografia para qualquer página que use o Hero */
+.hero-content h1 {
+    font-size: 2.5rem; /* ~40px */
+    line-height: 1.05;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    color: inherit; /* preserva cor definida pela página */
+    text-shadow: 0 8px 24px rgba(3, 10, 30, 0.55);
+    max-width: 90ch;
+}
+
+.hero-content p {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.6;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 70ch;
+}
+
+/* Ajustes responsivos: maiores em telas largas */
+@media (min-width: 768px) {
+    .hero-content h1 {
+        font-size: 3rem; /* ~48px */
+    }
+    .hero-content p {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero-content h1 {
+        font-size: 3.5rem; /* ~56px */
+    }
+    .hero-content p {
+        font-size: 1.25rem; /* ~20px */
+    }
 }
