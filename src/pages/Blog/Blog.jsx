@@ -1,20 +1,270 @@
+import { useEffect, useMemo, useState } from "react";
 import { Hero } from "../../components/Hero/Hero";
+import {
+    BLOG_POSTS_PER_PAGE,
+    buscarPostsDoBlog,
+    decodificarEntidadesHtml,
+    filtrarPostsPorTermo,
+    formatarDataPublicacao,
+    limitarTexto,
+    obterCategoriasPost,
+    obterImagemPost,
+    obterSugestoesBlog,
+    obterTagPost,
+    paginarLista,
+    removerTagsHtml,
+    separarPostsPorCategoria,
+} from "../../infrastructure/api/blog.js";
 import "./blog.css";
 
+const BlogCard = ({ post }) => {
+    const titulo = removerTagsHtml(post.title?.rendered) || "Sem título";
+    const resumo = limitarTexto(
+        decodificarEntidadesHtml(removerTagsHtml(post.excerpt?.rendered)),
+        160,
+    );
+    const imagem = obterImagemPost(post);
+    const data = formatarDataPublicacao(post.date);
+    const tag = obterTagPost(post);
+    const tagClasse = tag === "Artigo" ? "mercado" : "associacao";
+    const categorias = obterCategoriasPost(post);
+    const url = post.link || "#";
+
+    return (
+        <article className="blog-card">
+            <a
+                className="blog-card-link"
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div className="blog-card-img">
+                    <img src={imagem} alt={titulo} loading="lazy" />
+                </div>
+                <div className="blog-card-body">
+                    <span className={`blog-tag ${tagClasse}`}>{tag}</span>
+                    <h3>{titulo}</h3>
+                    <p>
+                        {resumo || "Leia o conteúdo completo no site da ACB."}
+                    </p>
+                    {categorias.length > 0 ? (
+                        <div className="blog-card-categories">
+                            {categorias.slice(0, 2).map((categoria) => (
+                                <span
+                                    key={categoria}
+                                    className="blog-card-category"
+                                >
+                                    {categoria}
+                                </span>
+                            ))}
+                        </div>
+                    ) : null}
+                    <div className="blog-card-footer">
+                        <span className="blog-date">{data}</span>
+                        <span className="ler-mais">Ler mais &rarr;</span>
+                    </div>
+                </div>
+            </a>
+        </article>
+    );
+};
+
+const BlogGallery = ({
+    title,
+    searchLabel,
+    searchValue,
+    onSearchChange,
+    suggestions,
+    posts,
+    currentPage,
+    onPageChange,
+    loading,
+    error,
+    emptyMessage,
+    suggestionsId,
+    paginationLabel,
+}) => {
+    const paginacao = paginarLista(posts, currentPage, BLOG_POSTS_PER_PAGE);
+
+    return (
+        <div className="blog-gallery-block">
+            <div className="section-header-row">
+                <h2>{title}</h2>
+                <div className="blog-search-wrap">
+                    <label
+                        className="blog-search-label"
+                        htmlFor={suggestionsId}
+                    >
+                        {searchLabel}
+                    </label>
+                    <input
+                        id={suggestionsId}
+                        className="blog-search-input"
+                        type="search"
+                        list={`${suggestionsId}-options`}
+                        placeholder="Título ou categoria"
+                        autoComplete="off"
+                        value={searchValue}
+                        onChange={(event) => onSearchChange(event.target.value)}
+                    />
+                    <datalist id={`${suggestionsId}-options`}>
+                        {suggestions.map((option) => (
+                            <option key={option} value={option} />
+                        ))}
+                    </datalist>
+                </div>
+            </div>
+
+            {loading ? (
+                <p className="blog-empty">
+                    Carregando {title.toLowerCase()}...
+                </p>
+            ) : error ? (
+                <p className="blog-empty">{error}</p>
+            ) : paginacao.items.length > 0 ? (
+                <>
+                    <div className="blog-grid">
+                        {paginacao.items.map((post) => (
+                            <BlogCard key={post.id} post={post} />
+                        ))}
+                    </div>
+                    {paginacao.totalPaginas > 1 ? (
+                        <nav
+                            className="blog-pagination"
+                            aria-label={paginationLabel}
+                        >
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    onPageChange(
+                                        Math.max(1, paginacao.pagina - 1),
+                                    )
+                                }
+                                disabled={paginacao.pagina <= 1}
+                            >
+                                Anterior
+                            </button>
+                            <span className="blog-pagination-info">
+                                Página {paginacao.pagina} de{" "}
+                                {paginacao.totalPaginas}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    onPageChange(
+                                        Math.min(
+                                            paginacao.totalPaginas,
+                                            paginacao.pagina + 1,
+                                        ),
+                                    )
+                                }
+                                disabled={
+                                    paginacao.pagina >= paginacao.totalPaginas
+                                }
+                            >
+                                Próximo
+                            </button>
+                        </nav>
+                    ) : null}
+                </>
+            ) : (
+                <p className="blog-empty">{emptyMessage}</p>
+            )}
+        </div>
+    );
+};
+
 export const Blog = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [termoArtigos, setTermoArtigos] = useState("");
+    const [termoNewsletter, setTermoNewsletter] = useState("");
+    const [paginaArtigos, setPaginaArtigos] = useState(1);
+    const [paginaNewsletter, setPaginaNewsletter] = useState(1);
+
+    const handleTermoArtigosChange = (value) => {
+        setTermoArtigos(value);
+        setPaginaArtigos(1);
+    };
+
+    const handleTermoNewsletterChange = (value) => {
+        setTermoNewsletter(value);
+        setPaginaNewsletter(1);
+    };
+
+    useEffect(() => {
+        let ativo = true;
+
+        const carregar = async () => {
+            setLoading(true);
+            setError("");
+
+            try {
+                const postsCarregados = await buscarPostsDoBlog();
+
+                if (!ativo) {
+                    return;
+                }
+
+                setPosts(postsCarregados);
+            } catch {
+                if (ativo) {
+                    setError(
+                        "Não foi possível carregar os posts do blog no momento.",
+                    );
+                }
+            } finally {
+                if (ativo) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        carregar();
+
+        return () => {
+            ativo = false;
+        };
+    }, []);
+
+    const { artigos, newsletter } = useMemo(
+        () => separarPostsPorCategoria(posts),
+        [posts],
+    );
+
+    const artigosFiltrados = useMemo(
+        () => filtrarPostsPorTermo(artigos, termoArtigos),
+        [artigos, termoArtigos],
+    );
+    const newsletterFiltrados = useMemo(
+        () => filtrarPostsPorTermo(newsletter, termoNewsletter),
+        [newsletter, termoNewsletter],
+    );
+
+    const sugestoesArtigos = useMemo(
+        () => obterSugestoesBlog(artigos),
+        [artigos],
+    );
+    const sugestoesNewsletter = useMemo(
+        () => obterSugestoesBlog(newsletter),
+        [newsletter],
+    );
+
     return (
         <main>
             <Hero>
-                <div className="content-wrapper">
-                    <span className="badge">INSTITUCIONAL</span>
+                <div className="blog-hero-content">
+                    <span className="blog-badge">INSTITUCIONAL</span>
                     <h1>Conteúdo Institucional e Análises Estratégicas</h1>
-                    <p style={{ color: "#ffcc00" }}>
+                    <p className="blog-hero-copy">
                         Publicações que reúnem posicionamentos institucionais,
                         atualizações estratégicas para conselheiros, associados
                         e lideranças.
                     </p>
                 </div>
             </Hero>
+
             <section className="blog-section">
                 <div className="section-container">
                     <div className="section-label">
@@ -22,65 +272,38 @@ export const Blog = () => {
                         Blog &amp; Newsletter
                     </div>
 
-                    <div className="blog-gallery-block">
-                        <div className="section-header-row">
-                            <h2>Artigos</h2>
-                            <div className="blog-search-wrap">
-                                <label
-                                    className="blog-search-label"
-                                    htmlFor="blog-search-artigos"
-                                >
-                                    Buscar artigos
-                                </label>
-                                <input
-                                    id="blog-search-artigos"
-                                    className="blog-search-input"
-                                    type="search"
-                                    list="blog-search-artigos-suggestions"
-                                    placeholder="Título ou categoria"
-                                    autoComplete="off"
-                                />
-                                <datalist id="blog-search-artigos-suggestions"></datalist>
-                            </div>
-                        </div>
-                        <div className="blog-grid" id="blog-grid-artigos"></div>
-                        <nav
-                            className="blog-pagination"
-                            id="blog-pagination-artigos"
-                            aria-label="Paginação de artigos"
-                        ></nav>
-                    </div>
+                    <div className="blog-gallery-grid">
+                        <BlogGallery
+                            title="Artigos"
+                            searchLabel="Buscar artigos"
+                            searchValue={termoArtigos}
+                            onSearchChange={handleTermoArtigosChange}
+                            suggestions={sugestoesArtigos}
+                            posts={artigosFiltrados}
+                            currentPage={paginaArtigos}
+                            onPageChange={setPaginaArtigos}
+                            loading={loading}
+                            error={error}
+                            emptyMessage="Nenhum artigo encontrado para esse filtro."
+                            suggestionsId="blog-search-artigos"
+                            paginationLabel="Paginação de artigos"
+                        />
 
-                    <div className="blog-gallery-block blog-gallery-block-newsletter">
-                        <div className="section-header-row">
-                            <h2>Newsletter</h2>
-                            <div className="blog-search-wrap">
-                                <label
-                                    className="blog-search-label"
-                                    htmlFor="blog-search-newsletter"
-                                >
-                                    Buscar newsletters
-                                </label>
-                                <input
-                                    id="blog-search-newsletter"
-                                    className="blog-search-input"
-                                    type="search"
-                                    list="blog-search-newsletter-suggestions"
-                                    placeholder="Título ou categoria"
-                                    autoComplete="off"
-                                />
-                                <datalist id="blog-search-newsletter-suggestions"></datalist>
-                            </div>
-                        </div>
-                        <div
-                            className="blog-grid"
-                            id="blog-grid-newsletter"
-                        ></div>
-                        <nav
-                            className="blog-pagination"
-                            id="blog-pagination-newsletter"
-                            aria-label="Paginação de newsletters"
-                        ></nav>
+                        <BlogGallery
+                            title="Newsletter"
+                            searchLabel="Buscar newsletters"
+                            searchValue={termoNewsletter}
+                            onSearchChange={handleTermoNewsletterChange}
+                            suggestions={sugestoesNewsletter}
+                            posts={newsletterFiltrados}
+                            currentPage={paginaNewsletter}
+                            onPageChange={setPaginaNewsletter}
+                            loading={loading}
+                            error={error}
+                            emptyMessage="Nenhuma newsletter encontrada para esse filtro."
+                            suggestionsId="blog-search-newsletter"
+                            paginationLabel="Paginação de newsletters"
+                        />
                     </div>
                 </div>
             </section>
