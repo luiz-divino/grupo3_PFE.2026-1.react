@@ -42,12 +42,8 @@ export const Nav = () => {
                     </ul>
 
                     <div className="actions">
-                        <span className="btn-login">
-                            <Link to="/entrar">Entrar</Link>
-                        </span>
-                        <span className="btn-register">
-                            <Link to="/cadastro">Associe-se</Link>
-                        </span>
+                        <Link to="/entrar" className="btn-login">Entrar</Link>
+                        <Link to="/cadastro" className="btn-register">Associe-se</Link>
                     </div>
                 </nav>
             </header>
