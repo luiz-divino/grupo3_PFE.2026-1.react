@@ -68,11 +68,8 @@ export const QuemSomos = () => {
 
                     <div className="associados-grid">
                         {associados.map((associado) => (
-                            <a
-                                key={associado.url}
-                                href={associado.url}
-                                target="_blank"
-                                rel="noreferrer"
+                            <div
+                                key={associado.nome}
                                 className="associado-card"
                             >
                                 <img
@@ -81,7 +78,7 @@ export const QuemSomos = () => {
                                 />
 
                                 <h3>{associado.nome}</h3>
-                            </a>
+                            </div>
                         ))}
                     </div>
                 </div>
