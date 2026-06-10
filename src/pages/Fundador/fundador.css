@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap");
+
+.fundador-detalhe-section {
+    padding: 80px 20px 92px;
+    background:
+        radial-gradient(circle at top right, rgba(255, 204, 0, 0.16), transparent 28%),
+        linear-gradient(180deg, #f4f7ff 0%, #eef3ff 100%);
+}
+
+.fundador-detalhe-shell {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.fundador-detalhe-card {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: 0;
+    background: #fff;
+    border: 2px solid rgba(252, 185, 0, 0.9);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 22px 60px rgba(26, 35, 126, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.fundador-detalhe-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 70px rgba(252, 185, 0, 0.16);
+    border-color: #fcb900;
+}
+
+.fundador-detalhe-media {
+    min-height: 100%;
+    background: linear-gradient(135deg, #dbe7ff, #f9fbff);
+}
+
+.fundador-detalhe-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.28s ease;
+}
+
+.fundador-detalhe-card:hover .fundador-detalhe-media img {
+    transform: scale(1.03);
+}
+
+.fundador-detalhe-content {
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+}
+
+.fundador-detalhe-kicker {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    background-color: rgba(26, 79, 196, 0.1);
+    color: #1a4fc4;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.fundador-detalhe-content h1 {
+    color: #1a1a66;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+}
+
+.fundador-detalhe-content p {
+    color: #51607a;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.fundador-detalhe-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.fundador-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background-color: #1a4fc4;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(26, 79, 196, 0.18);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.fundador-back-link:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.fundador-detail-empty {
+    background: #fff;
+    border: 1px dashed rgba(26, 79, 196, 0.25);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    color: #51607a;
+}
+
+.fundador-detail-empty a {
+    color: #1a4fc4;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.fundador-detail-empty a:hover {
+    text-decoration: underline;
+}
+
+/* ── RESPONSIVO ─────────────────────────────── */
+@media (max-width: 900px) {
+    .fundador-detalhe-card {
+        grid-template-columns: 1fr;
+    }
+
+    .fundador-detalhe-media {
+        aspect-ratio: 4 / 3;
+        min-height: unset;
+    }
+}
+
+@media (max-width: 600px) {
+    .fundador-detalhe-section {
+        padding: 48px 16px 64px;
+    }
+
+    .fundador-detalhe-content {
+        padding: 24px 20px;
+    }
+
+    .fundador-detalhe-actions {
+        flex-direction: column;
+    }
+
+    .fundador-back-link {
+        width: 100%;
+    }
+}
