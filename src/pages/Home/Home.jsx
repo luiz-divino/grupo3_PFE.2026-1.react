@@ -1,9 +1,66 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
+import { Card } from "../../components/Card/Card";
+import {
+    getYoutubeThumbnail,
+    handleYoutubeThumbnailError,
+} from "../../components/Card/youtubeThumbnail";
+import {
+    buscarPostsDoBlog,
+    separarPostsPorCategoria,
+} from "../../infrastructure/api/blog.js";
 import moneyImage from "../../assets/images/money.jpg";
+import webinarsData from "../../data/webinars.json";
+import "../Blog/blog.css";
 import "./home.css";
 
+const webinars = webinarsData.webinarYoutube ?? [];
+const webinarDestaque = webinars[0];
+const webinarsHome = webinars.slice(1, 4);
+
 export const Home = () => {
+    const [artigosRecentes, setArtigosRecentes] = useState([]);
+    const [blogLoading, setBlogLoading] = useState(true);
+    const [blogError, setBlogError] = useState("");
+
+    useEffect(() => {
+        let ativo = true;
+
+        const carregarArtigos = async () => {
+            setBlogLoading(true);
+            setBlogError("");
+
+            try {
+                const posts = await buscarPostsDoBlog();
+
+                if (!ativo) {
+                    return;
+                }
+
+                const { artigos } = separarPostsPorCategoria(posts);
+                setArtigosRecentes(artigos.slice(0, 3));
+            } catch {
+                if (ativo) {
+                    setBlogError(
+                        "Não foi possível carregar os artigos no momento.",
+                    );
+                }
+            } finally {
+                if (ativo) {
+                    setBlogLoading(false);
+                }
+            }
+        };
+
+        carregarArtigos();
+
+        return () => {
+            ativo = false;
+        };
+    }, []);
+
     return (
         <main>
             <Hero>
@@ -92,6 +149,50 @@ export const Home = () => {
                     </div>
 
                     <div className="destaque-grid" id="webinar-destaque">
+                        {webinarDestaque ? (
+                            <>
+                                <a
+                                    className="destaque-image-card webinar-featured-media"
+                                    href={webinarDestaque.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Assistir ${webinarDestaque.titulo} no YouTube`}
+                                >
+                                    <img
+                                        src={getYoutubeThumbnail(webinarDestaque.capa)}
+                                        alt={`Capa do ${webinarDestaque.titulo}`}
+                                        onError={(event) =>
+                                            handleYoutubeThumbnailError(
+                                                event,
+                                                webinarDestaque.capa,
+                                            )
+                                        }
+                                    />
+                                    <span className="destaque-tag">
+                                        {webinarDestaque.tag}
+                                    </span>
+                                    <div className="destaque-image-caption">
+                                        <h3>{webinarDestaque.titulo}</h3>
+                                        <p className="destaque-meta">
+                                            Webinar {webinarDestaque.id}
+                                        </p>
+                                    </div>
+                                </a>
+
+                                <div className="destaque-content">
+                                    <h2>{webinarDestaque.titulo}</h2>
+                                    <p>{webinarDestaque.destaque}</p>
+                                    <a
+                                        href={webinarDestaque.url}
+                                        className="btn-primary destaque-cta"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Assistir webinar &rarr;
+                                    </a>
+                                </div>
+                            </>
+                        ) : null}
                     </div>
                 </div>
             </section>
@@ -105,15 +206,18 @@ export const Home = () => {
 
                     <div className="section-header-row">
                         <h2>Webinars</h2>
-                        <a href="#webinar-home-grid" className="ver-todos">Ver todos &rarr;</a>
+                        <Link to="/webinars" className="ver-todos">Ver todos &rarr;</Link>
                     </div>
 
                     <div className="eventos-grid webinar-grid" id="webinar-home-grid">
+                        {webinarsHome.map((webinar) => (
+                            <Card key={webinar.id} webinar={webinar} />
+                        ))}
                     </div>
                 </div>
             </section>
 
-            <section className="blog-section">
+            <section className="home-blog-section">
                 <div className="section-container">
                     <div className="section-label">
                         <span className="label-bar"></span>
@@ -122,10 +226,29 @@ export const Home = () => {
 
                     <div className="section-header-row">
                         <h2>Artigos recentes</h2>
-                        <Link to="/blog" className="ver-todos">Ver todos &rarr;</Link>
+                        <Link to="/blog" className="ver-todos">
+                            Ver todos &rarr;
+                        </Link>
                     </div>
 
-                    <div className="blog-grid" id="blog-grid">
+                    <div className="blog-grid home-blog-grid" id="blog-grid">
+                        {blogLoading ? (
+                            <p className="blog-empty">Carregando artigos...</p>
+                        ) : blogError ? (
+                            <p className="blog-empty">{blogError}</p>
+                        ) : artigosRecentes.length > 0 ? (
+                            artigosRecentes.map((post) => (
+                                <BlogCard
+                                    key={post.id}
+                                    post={post}
+                                    showCategories={false}
+                                />
+                            ))
+                        ) : (
+                            <p className="blog-empty">
+                                Nenhum artigo disponível no momento.
+                            </p>
+                        )}
                     </div>
 
                     <div className="videos-section section-container">
