@@ -1,0 +1,187 @@
+.webinar-aviso-form {
+    width: min(100%, 760px);
+    margin-inline: auto;
+}
+
+.webinar-aviso-form__header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.webinar-aviso-form__header h2 {
+    margin: 0 0 10px;
+    color: #1a1a2e;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.webinar-aviso-form__header p {
+    margin: 0;
+    color: #586174;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.webinar-aviso-form__card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: clamp(24px, 4vw, 36px);
+    background-color: #fff;
+    border: var(--card-border);
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+.webinar-aviso-form__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.webinar-aviso-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.webinar-aviso-form__group label {
+    color: #020617;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.webinar-aviso-form__group input,
+.webinar-aviso-form__group select {
+    width: 100%;
+    height: 43px;
+    padding: 0 14px;
+    border: 1.5px solid #cfd9ee;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #1f2937;
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.webinar-aviso-form__group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23586174' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+}
+
+.webinar-aviso-form__group input::placeholder {
+    color: #9cadcd;
+    font-weight: 600;
+}
+
+.webinar-aviso-form__group input:focus,
+.webinar-aviso-form__group select:focus {
+    border-color: #1a4fc4;
+    box-shadow: 0 0 0 3px rgba(26, 79, 196, 0.1);
+}
+
+.webinar-aviso-form__consent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 4px;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: left;
+    cursor: pointer;
+}
+
+.webinar-aviso-form__consent input {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    flex: 0 0 auto;
+    accent-color: #1a4fc4;
+    cursor: pointer;
+}
+
+.webinar-aviso-form__consent a {
+    color: #1a4fc4;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.webinar-aviso-form__consent a:hover {
+    text-decoration: underline;
+}
+
+.webinar-aviso-form__error {
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background-color: #fef2f2;
+    color: #b91c1c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.webinar-aviso-form__success {
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    background-color: #dcfce7;
+    color: #166534;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.webinar-aviso-form__submit {
+    align-self: center;
+    min-width: min(100%, 260px);
+    margin-top: 4px;
+    padding: 13px 28px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f5a623;
+    color: #1a1a2e;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.15s;
+}
+
+.webinar-aviso-form__submit:hover {
+    background-color: #e09515;
+}
+
+.webinar-aviso-form__submit:active {
+    transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+    .webinar-aviso-form__row {
+        grid-template-columns: 1fr;
+    }
+
+    .webinar-aviso-form__consent {
+        justify-content: flex-start;
+    }
+
+    .webinar-aviso-form__submit {
+        width: 100%;
+    }
+}
