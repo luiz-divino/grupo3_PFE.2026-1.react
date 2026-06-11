@@ -90,7 +90,7 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #888;
+    color: #666;
     text-transform: uppercase;
 }
 
@@ -108,7 +108,7 @@
 
 .canal-info {
     font-size: 12.5px;
-    color: #888;
+    color: #666;
     line-height: 1.4;
 }
 
@@ -306,7 +306,7 @@
 
 .contato-form .form-privacidade {
     margin: 0;
-    color: #8a94a6;
+    color: #666;
     font-size: 12.5px;
     line-height: 1.45;
     text-align: center;
