@@ -1,56 +1,89 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo-acb.png";
 import "./nav.css";
 
 export const Nav = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
+    useEffect(() => {
+        if (!isOpen) {
+            return undefined;
+        }
+
+        const handleEscape = (event) => {
+            if (event.key === "Escape") {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("keydown", handleEscape);
+        return () => document.removeEventListener("keydown", handleEscape);
+    }, [isOpen]);
+
+    const toggleMenu = () => setIsOpen((open) => !open);
+    const closeMenu = () => setIsOpen(false);
+
     return (
-        <>
-            <header className="top-header">
-                <nav className="nav-container">
-                    <div className="logo">
+        <header className="top-header">
+            <nav
+                className={`nav-container${isOpen ? " nav-open" : ""}`}
+            >
+                <div className="logo">
+                    <Link to="/" onClick={closeMenu}>
                         <img src={logo} alt="Logo da ACB" />
-                    </div>
-                    {/*espaço para adicionar button menu hamburguer para telas mobile */}
-                    <button
-                        class="menu-toggle"
-                        type="button"
-                        aria-label="Abrir menu"
-                        aria-expanded="false"
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                    </Link>
+                </div>
 
-                    {/* menu de navegação */}
-                    <ul className="menu">
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/quem-somos">Quem Somos</Link>
-                        </li>
-                        <li>
-                            <Link to="/blog">Blog</Link>
-                        </li>
-                        <li>
-                            <Link to="/membros">Membros</Link>
-                        </li>
-                        <li>
-                            <Link to="/contato">Contato</Link>
-                        </li>
-                    </ul>
+                <button
+                    className="menu-toggle"
+                    type="button"
+                    aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+                    aria-expanded={isOpen}
+                    aria-controls="main-nav-menu"
+                    onClick={toggleMenu}
+                >
+                    <span />
+                    <span />
+                    <span />
+                </button>
 
-                    <div className="actions">
-                        <span className="btn-login">
-                            <Link to="/entrar">Entrar</Link>
-                        </span>
-                        <span className="btn-register">
-                            <Link to="/cadastro">Associe-se</Link>
-                        </span>
-                    </div>
-                </nav>
-            </header>
-        </>
+                <ul
+                    className="menu"
+                    id="main-nav-menu"
+                    onClick={closeMenu}
+                >
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/quem-somos">Quem Somos</Link>
+                    </li>
+                    <li>
+                        <Link to="/blog">Blog</Link>
+                    </li>
+                    <li>
+                        <Link to="/membros">Membros</Link>
+                    </li>
+                    <li>
+                        <Link to="/contato">Contato</Link>
+                    </li>
+                </ul>
+
+                <div className="actions" onClick={closeMenu}>
+                    <span className="btn-login">
+                        <Link to="/entrar">Entrar</Link>
+                    </span>
+                    <span className="btn-register">
+                        <Link to="/cadastro">Associe-se</Link>
+                    </span>
+                </div>
+            </nav>
+        </header>
     );
 };
