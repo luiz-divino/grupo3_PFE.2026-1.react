@@ -177,7 +177,7 @@ export const Contato = () => {
                             </div>
                             <span className="canal-label">SEDE</span>
                             <span className="canal-value canal-value--highlight">
-                                Av. Paulista, 1374 — SP
+                                São Paulo, SP
                             </span>
                         </div>
                     </div>

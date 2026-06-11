@@ -76,7 +76,7 @@ export const Footer = () => {
                     {/* Coluna 4 - Contato */}
                     <div className="footer-col">
                         <h3>Contato</h3>
-                        <p>Rua Exemplo, 123 - São Paulo, SP</p>
+                        <p>São Paulo, SP</p>
                         <p>(11) 99719-5099</p>
                         <p>contato@acb.com.br</p>
                     </div>
