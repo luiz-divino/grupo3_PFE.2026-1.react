@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "./client.js";
+import { API_BASE_URL } from "./client";
 
 const WP_POSTS_ENDPOINT = `${API_BASE_URL}/wp/v2/posts`;
 
