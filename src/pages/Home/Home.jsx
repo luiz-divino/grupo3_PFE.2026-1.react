@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
-import { Card } from "../../components/Card/Card";
+import { WebinarCard } from "../../components/WebinarsCard/WebinarCard.jsx";
 import {
     getYoutubeThumbnail,
     handleYoutubeThumbnailError,
-} from "../../components/Card/youtubeThumbnail";
+} from "../../components/WebinarsCard/youtubeThumbnail.js";
 import {
     buscarPostsDoBlog,
     separarPostsPorCategoria,
@@ -67,7 +67,9 @@ export const Home = () => {
                 <div className="hero-text-container">
                     <h1>
                         ASSOCIAÇÃO DE{" "}
-                        <span className="highlight">CONSELHEIROS DO BRASIL</span>
+                        <span className="highlight">
+                            CONSELHEIROS DO BRASIL
+                        </span>
                     </h1>
                     <div className="hero-text-description">
                         <p>
@@ -92,48 +94,145 @@ export const Home = () => {
                     <div className="indicadores-wrap">
                         <div className="indicadores-grid" id="indicadores-grid">
                             <div className="indicador-card">
-                                <span className="indicador-label">POUPANÇA</span>
-                                <span className="indicador-value" id="ibov-value">--</span>
-                                <span className="indicador-change neutral" id="ibov-change">Carregando...</span>
-                                <div className="indicador-spinner" id="ibov-spinner" role="status" aria-live="polite"
-                                    aria-label="Carregando indicador POUPANÇA">
-                                    <img src={moneyImage} alt="Carregando" className="indicador-spinner-image" />
+                                <span className="indicador-label">
+                                    POUPANÇA
+                                </span>
+                                <span
+                                    className="indicador-value"
+                                    id="ibov-value"
+                                >
+                                    --
+                                </span>
+                                <span
+                                    className="indicador-change neutral"
+                                    id="ibov-change"
+                                >
+                                    Carregando...
+                                </span>
+                                <div
+                                    className="indicador-spinner"
+                                    id="ibov-spinner"
+                                    role="status"
+                                    aria-live="polite"
+                                    aria-label="Carregando indicador POUPANÇA"
+                                >
+                                    <img
+                                        src={moneyImage}
+                                        alt="Carregando"
+                                        className="indicador-spinner-image"
+                                    />
                                 </div>
                             </div>
                             <div className="indicador-card">
                                 <span className="indicador-label">CDI</span>
-                                <span className="indicador-value" id="cdi-value">--</span>
-                                <span className="indicador-change neutral" id="cdi-change">Carregando...</span>
-                                <div className="indicador-spinner" id="cdi-spinner" role="status" aria-live="polite"
-                                    aria-label="Carregando indicador CDI">
-                                    <img src={moneyImage} alt="Carregando" className="indicador-spinner-image" />
+                                <span
+                                    className="indicador-value"
+                                    id="cdi-value"
+                                >
+                                    --
+                                </span>
+                                <span
+                                    className="indicador-change neutral"
+                                    id="cdi-change"
+                                >
+                                    Carregando...
+                                </span>
+                                <div
+                                    className="indicador-spinner"
+                                    id="cdi-spinner"
+                                    role="status"
+                                    aria-live="polite"
+                                    aria-label="Carregando indicador CDI"
+                                >
+                                    <img
+                                        src={moneyImage}
+                                        alt="Carregando"
+                                        className="indicador-spinner-image"
+                                    />
                                 </div>
                             </div>
                             <div className="indicador-card">
                                 <span className="indicador-label">IPCA</span>
-                                <span className="indicador-value" id="ipca-value">--</span>
-                                <span className="indicador-change down" id="ipca-change">Carregando...</span>
-                                <div className="indicador-spinner" id="ipca-spinner" role="status" aria-live="polite"
-                                    aria-label="Carregando indicador IPCA">
-                                    <img src={moneyImage} alt="Carregando" className="indicador-spinner-image" />
+                                <span
+                                    className="indicador-value"
+                                    id="ipca-value"
+                                >
+                                    --
+                                </span>
+                                <span
+                                    className="indicador-change down"
+                                    id="ipca-change"
+                                >
+                                    Carregando...
+                                </span>
+                                <div
+                                    className="indicador-spinner"
+                                    id="ipca-spinner"
+                                    role="status"
+                                    aria-live="polite"
+                                    aria-label="Carregando indicador IPCA"
+                                >
+                                    <img
+                                        src={moneyImage}
+                                        alt="Carregando"
+                                        className="indicador-spinner-image"
+                                    />
                                 </div>
                             </div>
                             <div className="indicador-card">
                                 <span className="indicador-label">USD/BRL</span>
-                                <span className="indicador-value" id="usdbrl-value">--</span>
-                                <span className="indicador-change down" id="usdbrl-change">Carregando...</span>
-                                <div className="indicador-spinner" id="usdbrl-spinner" role="status" aria-live="polite"
-                                    aria-label="Carregando indicador USD/BRL">
-                                    <img src={moneyImage} alt="Carregando" className="indicador-spinner-image" />
+                                <span
+                                    className="indicador-value"
+                                    id="usdbrl-value"
+                                >
+                                    --
+                                </span>
+                                <span
+                                    className="indicador-change down"
+                                    id="usdbrl-change"
+                                >
+                                    Carregando...
+                                </span>
+                                <div
+                                    className="indicador-spinner"
+                                    id="usdbrl-spinner"
+                                    role="status"
+                                    aria-live="polite"
+                                    aria-label="Carregando indicador USD/BRL"
+                                >
+                                    <img
+                                        src={moneyImage}
+                                        alt="Carregando"
+                                        className="indicador-spinner-image"
+                                    />
                                 </div>
                             </div>
                             <div className="indicador-card">
                                 <span className="indicador-label">SELIC</span>
-                                <span className="indicador-value" id="selic-value">--</span>
-                                <span className="indicador-change up" id="selic-change">Carregando...</span>
-                                <div className="indicador-spinner" id="selic-spinner" role="status" aria-live="polite"
-                                    aria-label="Carregando indicador SELIC">
-                                    <img src={moneyImage} alt="Carregando" className="indicador-spinner-image" />
+                                <span
+                                    className="indicador-value"
+                                    id="selic-value"
+                                >
+                                    --
+                                </span>
+                                <span
+                                    className="indicador-change up"
+                                    id="selic-change"
+                                >
+                                    Carregando...
+                                </span>
+                                <div
+                                    className="indicador-spinner"
+                                    id="selic-spinner"
+                                    role="status"
+                                    aria-live="polite"
+                                    aria-label="Carregando indicador SELIC"
+                                >
+                                    <img
+                                        src={moneyImage}
+                                        alt="Carregando"
+                                        className="indicador-spinner-image"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -159,7 +258,9 @@ export const Home = () => {
                                     aria-label={`Assistir ${webinarDestaque.titulo} no YouTube`}
                                 >
                                     <img
-                                        src={getYoutubeThumbnail(webinarDestaque.capa)}
+                                        src={getYoutubeThumbnail(
+                                            webinarDestaque.capa,
+                                        )}
                                         alt={`Capa do ${webinarDestaque.titulo}`}
                                         onError={(event) =>
                                             handleYoutubeThumbnailError(
@@ -206,12 +307,17 @@ export const Home = () => {
 
                     <div className="section-header-row">
                         <h2>Webinars</h2>
-                        <Link to="/webinars" className="ver-todos">Ver todos &rarr;</Link>
+                        <Link to="/webinars" className="ver-todos">
+                            Ver todos &rarr;
+                        </Link>
                     </div>
 
-                    <div className="eventos-grid webinar-grid" id="webinar-home-grid">
+                    <div
+                        className="eventos-grid webinar-grid"
+                        id="webinar-home-grid"
+                    >
                         {webinarsHome.map((webinar) => (
-                            <Card key={webinar.id} webinar={webinar} />
+                            <WebinarCard key={webinar.id} webinar={webinar} />
                         ))}
                     </div>
                 </div>
@@ -254,11 +360,16 @@ export const Home = () => {
                     <div className="videos-section section-container">
                         <div className="section-header-row">
                             <h2>Podcasts</h2>
-                            <a href="https://youtube.com/playlist?list=PL98yzQXxvQjVDk60HdOp9dySACtnJErRO&si=ubJP88t5lplaJEAY"
-                                className="ver-todos" target="_blank" rel="noopener">Ver mais &rarr;</a>
+                            <a
+                                href="https://youtube.com/playlist?list=PL98yzQXxvQjVDk60HdOp9dySACtnJErRO&si=ubJP88t5lplaJEAY"
+                                className="ver-todos"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Ver mais &rarr;
+                            </a>
                         </div>
-                        <div className="videos-grid" id="videos-grid">
-                        </div>
+                        <div className="videos-grid" id="videos-grid"></div>
                     </div>
                 </div>
             </section>
@@ -273,14 +384,20 @@ export const Home = () => {
                             </div>
                             <h2>Faça parte da ACB</h2>
                             <div className="associe-buttons">
-                                <Link to="/cadastro" className="btn-primary">Quero me associar &rarr;</Link>
-                                <Link to="/quem-somos" className="btn-outline-dark">Saiba mais</Link>
+                                <Link to="/cadastro" className="btn-primary">
+                                    Quero me associar &rarr;
+                                </Link>
+                                <Link
+                                    to="/quem-somos"
+                                    className="btn-outline-dark"
+                                >
+                                    Saiba mais
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
         </main>
     );
 };

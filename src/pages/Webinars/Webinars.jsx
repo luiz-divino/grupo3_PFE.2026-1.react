@@ -1,5 +1,5 @@
 import { Hero } from "../../components/Hero/Hero";
-import { Card } from "../../components/Card/Card";
+import { WebinarCard } from "../../components/WebinarsCard/WebinarCard";
 import webinarsData from "../../data/webinars.json";
 import "./webinars.css";
 
@@ -10,7 +10,9 @@ export const Webinars = () => {
         <main>
             <Hero>
                 <div className="webinars-hero-content">
-                    <span className="webinars-badge">Webinar &amp; Encontros</span>
+                    <span className="webinars-badge">
+                        Webinar &amp; Encontros
+                    </span>
                     <h1>Webinars ACBrasil</h1>
                     <p>
                         Conteúdos e encontros para conselheiros, lideranças e
@@ -33,7 +35,7 @@ export const Webinars = () => {
 
                     <div className="webinars-page-grid">
                         {webinars.map((webinar) => (
-                            <Card key={webinar.id} webinar={webinar} />
+                            <WebinarCard key={webinar.id} webinar={webinar} />
                         ))}
                     </div>
                 </div>
@@ -41,3 +43,4 @@ export const Webinars = () => {
         </main>
     );
 };
+

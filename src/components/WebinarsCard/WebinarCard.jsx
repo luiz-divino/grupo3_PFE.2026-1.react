@@ -4,7 +4,7 @@ import {
     handleYoutubeThumbnailError,
 } from "./youtubeThumbnail";
 
-export const Card = ({ webinar, className = "" }) => {
+export const WebinarCard = ({ webinar, className = "" }) => {
     if (!webinar) {
         return null;
     }
