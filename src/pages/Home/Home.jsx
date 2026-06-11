@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
+import { Indicadores } from "../../components/Indicadores/Indicadores.jsx";
 import { WebinarCard } from "../../components/WebinarsCard/WebinarCard.jsx";
 import {
     getYoutubeThumbnail,
@@ -11,7 +12,6 @@ import {
     buscarPostsDoBlog,
     separarPostsPorCategoria,
 } from "../../infrastructure/api/blog.js";
-import moneyImage from "../../assets/images/money.jpg";
 import webinarsData from "../../data/webinars.json";
 import "../Blog/blog.css";
 import "./home.css";
@@ -91,152 +91,7 @@ export const Home = () => {
             </Hero>
             <section className="mercado-section">
                 <div className="section-container">
-                    <div className="indicadores-wrap">
-                        <div className="indicadores-grid" id="indicadores-grid">
-                            <div className="indicador-card">
-                                <span className="indicador-label">
-                                    POUPANÇA
-                                </span>
-                                <span
-                                    className="indicador-value"
-                                    id="ibov-value"
-                                >
-                                    --
-                                </span>
-                                <span
-                                    className="indicador-change neutral"
-                                    id="ibov-change"
-                                >
-                                    Carregando...
-                                </span>
-                                <div
-                                    className="indicador-spinner"
-                                    id="ibov-spinner"
-                                    role="status"
-                                    aria-live="polite"
-                                    aria-label="Carregando indicador POUPANÇA"
-                                >
-                                    <img
-                                        src={moneyImage}
-                                        alt="Carregando"
-                                        className="indicador-spinner-image"
-                                    />
-                                </div>
-                            </div>
-                            <div className="indicador-card">
-                                <span className="indicador-label">CDI</span>
-                                <span
-                                    className="indicador-value"
-                                    id="cdi-value"
-                                >
-                                    --
-                                </span>
-                                <span
-                                    className="indicador-change neutral"
-                                    id="cdi-change"
-                                >
-                                    Carregando...
-                                </span>
-                                <div
-                                    className="indicador-spinner"
-                                    id="cdi-spinner"
-                                    role="status"
-                                    aria-live="polite"
-                                    aria-label="Carregando indicador CDI"
-                                >
-                                    <img
-                                        src={moneyImage}
-                                        alt="Carregando"
-                                        className="indicador-spinner-image"
-                                    />
-                                </div>
-                            </div>
-                            <div className="indicador-card">
-                                <span className="indicador-label">IPCA</span>
-                                <span
-                                    className="indicador-value"
-                                    id="ipca-value"
-                                >
-                                    --
-                                </span>
-                                <span
-                                    className="indicador-change down"
-                                    id="ipca-change"
-                                >
-                                    Carregando...
-                                </span>
-                                <div
-                                    className="indicador-spinner"
-                                    id="ipca-spinner"
-                                    role="status"
-                                    aria-live="polite"
-                                    aria-label="Carregando indicador IPCA"
-                                >
-                                    <img
-                                        src={moneyImage}
-                                        alt="Carregando"
-                                        className="indicador-spinner-image"
-                                    />
-                                </div>
-                            </div>
-                            <div className="indicador-card">
-                                <span className="indicador-label">USD/BRL</span>
-                                <span
-                                    className="indicador-value"
-                                    id="usdbrl-value"
-                                >
-                                    --
-                                </span>
-                                <span
-                                    className="indicador-change down"
-                                    id="usdbrl-change"
-                                >
-                                    Carregando...
-                                </span>
-                                <div
-                                    className="indicador-spinner"
-                                    id="usdbrl-spinner"
-                                    role="status"
-                                    aria-live="polite"
-                                    aria-label="Carregando indicador USD/BRL"
-                                >
-                                    <img
-                                        src={moneyImage}
-                                        alt="Carregando"
-                                        className="indicador-spinner-image"
-                                    />
-                                </div>
-                            </div>
-                            <div className="indicador-card">
-                                <span className="indicador-label">SELIC</span>
-                                <span
-                                    className="indicador-value"
-                                    id="selic-value"
-                                >
-                                    --
-                                </span>
-                                <span
-                                    className="indicador-change up"
-                                    id="selic-change"
-                                >
-                                    Carregando...
-                                </span>
-                                <div
-                                    className="indicador-spinner"
-                                    id="selic-spinner"
-                                    role="status"
-                                    aria-live="polite"
-                                    aria-label="Carregando indicador SELIC"
-                                >
-                                    <img
-                                        src={moneyImage}
-                                        alt="Carregando"
-                                        className="indicador-spinner-image"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Indicadores />
                 </div>
             </section>
 
