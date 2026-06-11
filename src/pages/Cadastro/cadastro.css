@@ -4,6 +4,7 @@
    por página). As seções do cadastro dependem dela para centralizar/limitar a
    largura — sem isso o .gratuito-grid esparramaria na tela inteira. */
 .gratuito-cad .section-container,
+.cadastro-teaser .section-container,
 .form-cad-section .section-container,
 .faq-section--cad .section-container {
   max-width: 1200px;
@@ -123,12 +124,6 @@
   font-weight: 400;
 }
 
-.hero-cad-buttons {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
 .btn-cad-primary {
   display: inline-flex;
   align-items: center;
@@ -173,6 +168,142 @@
 .btn-cad-ghost:hover {
   background-color: #eef2ff;
   border-color: #eef2ff;
+}
+
+.btn-cad-secondary-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #fff;
+  color: #123b91;
+  border: 1.5px solid #1a4fc4;
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.btn-cad-secondary-light:hover {
+  background-color: #eef4ff;
+  border-color: #123b91;
+  color: #0b1b5b;
+}
+
+/* --- CHAMADA PARA O FORMULÁRIO --- */
+.cadastro-teaser {
+  padding: 42px 0;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f4f7ff 100%);
+  color: #1a1a2e;
+}
+
+.cadastro-teaser-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  gap: 32px;
+  align-items: center;
+  padding: 34px;
+  border: 1px solid #d7e2fb;
+  border-radius: 14px;
+  background-color: #fff;
+}
+
+.cadastro-teaser-content {
+  max-width: 680px;
+}
+
+.cadastro-teaser-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: #1a4fc4;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.cadastro-teaser-badge::before {
+  content: "";
+  width: 4px;
+  height: 16px;
+  border-radius: 999px;
+  background-color: #f5a623;
+}
+
+.cadastro-teaser h2 {
+  margin: 0 0 12px;
+  color: #1a1a66;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.16;
+}
+
+.cadastro-teaser p {
+  max-width: 62ch;
+  margin: 0;
+  color: #455064;
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  opacity: 1;
+}
+
+.cadastro-teaser-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.cadastro-teaser-steps {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cadastro-teaser-steps li {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  min-height: 62px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background-color: #f4f7ff;
+}
+
+.cadastro-teaser-steps span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #f5a623;
+  color: #1a1a2e;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.cadastro-teaser-steps strong {
+  color: #1a1a66;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
 }
 
 /* --- BENEFÍCIOS --- */
@@ -324,6 +455,7 @@
 .form-cad-section {
   padding: 90px 0;
   background-color: #f4f7ff;
+  scroll-margin-top: 24px;
 }
 .form-cad-header {
   text-align: center;
@@ -593,6 +725,16 @@
   .beneficios-cad-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .cadastro-teaser-grid {
+    grid-template-columns: 1fr;
+  }
+  .cadastro-teaser-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .cadastro-teaser-steps li {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
   .gratuito-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -619,9 +761,32 @@
     padding: 0 20px;
   }
   .gratuito-cad .section-container,
+  .cadastro-teaser .section-container,
   .form-cad-section .section-container,
   .faq-section--cad .section-container {
     padding: 0 20px;
+  }
+  .cadastro-teaser {
+    padding: 30px 0;
+  }
+  .cadastro-teaser-grid {
+    gap: 24px;
+    padding: 24px;
+  }
+  .cadastro-teaser-actions {
+    flex-direction: column;
+  }
+  .cadastro-teaser-actions .btn-cad-primary,
+  .cadastro-teaser-actions .btn-cad-secondary-light {
+    justify-content: center;
+    width: 100%;
+  }
+  .cadastro-teaser-steps {
+    grid-template-columns: 1fr;
+  }
+  .cadastro-teaser-steps li {
+    grid-template-columns: 38px minmax(0, 1fr);
+    align-items: center;
   }
   .form-cad-card .form-row {
     grid-template-columns: 1fr;
@@ -653,14 +818,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
-  .hero-cad-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .hero-cad-buttons .btn-cad-primary,
-  .hero-cad-buttons .btn-cad-ghost {
-    justify-content: center;
-  }
   .cta-final-buttons {
     flex-direction: column;
   }
@@ -678,6 +835,7 @@
   .associe-content h2,
   .beneficios-cad-header h2,
   .gratuito-cad-header h2,
+  .cadastro-teaser h2,
   .form-cad-header h2,
   .processo-cad-header h2,
   .faq-header h2 {

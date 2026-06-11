@@ -125,16 +125,61 @@ export const Cadastro = () => {
                             governança corporativa e otimização de processos
                         </span>
                     </h1>
-                    <div className="hero-cad-buttons">
-                        <a href="#form-cadastro" className="btn-cad-primary">
-                            Quero me associar &rarr;
-                        </a>
-                        <Link to="/contato" className="btn-cad-ghost">
-                            Falar com a equipe
-                        </Link>
-                    </div>
                 </div>
             </Hero>
+
+            {/* CHAMADA PARA O FORMULÁRIO */}
+            <section className="cadastro-teaser" aria-labelledby="cadastro-teaser-title">
+                <div className="section-container">
+                    <div className="cadastro-teaser-grid">
+                        <div className="cadastro-teaser-content">
+                            <span className="cadastro-teaser-badge">
+                                Cadastro de associação
+                            </span>
+                            <h2 id="cadastro-teaser-title">
+                                Pronto para se associar?
+                            </h2>
+                            <p>
+                                O formulário leva poucos minutos para preencher.
+                                Depois do envio, a equipe da ACBrasil analisa
+                                seus dados e retorna com os próximos passos.
+                            </p>
+                            <div className="cadastro-teaser-actions">
+                                <a
+                                    href="#form-cadastro"
+                                    className="btn-cad-primary"
+                                >
+                                    Ir para o formulário
+                                </a>
+                                <Link
+                                    to="/contato"
+                                    className="btn-cad-secondary-light"
+                                >
+                                    Tirar dúvidas
+                                </Link>
+                            </div>
+                        </div>
+
+                        <ol
+                            className="cadastro-teaser-steps"
+                            aria-label="Etapas do cadastro"
+                        >
+                            <li>
+                                <span>1</span>
+                                <strong>Preencha seus dados</strong>
+                            </li>
+                            <li>
+                                <span>2</span>
+                                <strong>Equipe analisa</strong>
+                            </li>
+                            <li>
+                                <span>3</span>
+                                <strong>Receba retorno</strong>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
 
             {/* MODALIDADES */}
             <section className="gratuito-cad">
