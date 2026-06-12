@@ -116,11 +116,9 @@
 
 .btn-secondary {
     display: inline-block;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(2.2px);
-    -webkit-backdrop-filter: blur(2.2px);
-    background: rgba(255, 255, 255, 0.14);
-    color: #fff;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+    color: #0b1b5b;
     padding: 12px 28px;
     border-radius: 8px;
     text-decoration: none;
@@ -606,7 +604,7 @@
 }
 
 .indicador-change.neutral {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .indicador-spinner {

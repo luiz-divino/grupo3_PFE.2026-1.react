@@ -18,9 +18,9 @@ const INITIAL_CADASTRO = {
 };
 
 const beneficios = [
-    "Acesso à área de membros",
+    "Acesso a conteúdos exclusivos",
     "Newsletter semanal exclusiva",
-    "Diretório de membros completo",
+    "Diretório completo de conteúdos",
     "Inscrição prioritária em eventos",
     "Relatórios e análises do setor",
     "Alertas regulatórios em tempo real",
@@ -58,7 +58,7 @@ const faqItems = [
     {
         pergunta: "Posso cancelar minha associação a qualquer momento?",
         resposta:
-            "Sim. O desligamento pode ser solicitado a qualquer momento, sem burocracia. Basta entrar em contato pela área de membros ou pelo formulário de contato.",
+            "Sim. O desligamento pode ser solicitado a qualquer momento, sem burocracia. Basta entrar em contato pelo formulário de contato.",
     },
     {
         pergunta: "Quem pode se associar à ACBrasil?",

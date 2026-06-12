@@ -10,7 +10,6 @@ import { Contato } from "./pages/Contato/Contato";
 import { Cadastro } from "./pages/Cadastro/Cadastro";
 import { Entrar } from "./pages/Entrar/Entrar";
 import { Webinars } from "./pages/Webinars/Webinars";
-import { Membros } from "./pages/Membros/Membros";
 
 export const Router = () => {
     return (
@@ -26,7 +25,6 @@ export const Router = () => {
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/entrar" element={<Entrar />} />
                 <Route path="/webinars" element={<Webinars />} />
-                <Route path="/membros" element={<Membros />} />
             </Routes>
             <Footer />
         </BrowserRouter>

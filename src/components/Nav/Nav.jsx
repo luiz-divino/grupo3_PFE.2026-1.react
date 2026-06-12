@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo-acb.png";
 import "./nav.css";
 
 export const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-        setIsOpen(false);
-    }, [pathname]);
 
     useEffect(() => {
         if (!isOpen) {
@@ -66,9 +61,6 @@ export const Nav = () => {
                     </li>
                     <li>
                         <Link to="/blog">Blog</Link>
-                    </li>
-                    <li>
-                        <Link to="/membros">Membros</Link>
                     </li>
                     <li>
                         <Link to="/contato">Contato</Link>

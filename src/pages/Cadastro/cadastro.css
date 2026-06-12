@@ -69,8 +69,8 @@
     linear-gradient(
       135deg,
       rgba(15, 23, 92, 0.92) 0%,
-      rgba(26, 35, 126, 0.68) 60%,
-      rgba(8, 24, 59, 0.55) 100%
+      rgba(20, 29, 100, 0.84) 60%,
+      rgba(8, 24, 59, 0.82) 100%
     ),
     url("../../assets/images/backgrounds/fundo-amarelo.jpg") center/cover no-repeat;
   color: #fff;
@@ -157,9 +157,9 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background-color: #fff;
+  color: #0b1b5b;
+  border: 1.5px solid #fff;
   padding: 12px 26px;
   border-radius: 8px;
   font-weight: 600;
@@ -168,12 +168,11 @@
   transition:
     background 0.2s,
     border-color 0.2s;
-  backdrop-filter: blur(2px);
 }
 
 .btn-cad-ghost:hover {
-  background-color: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.55);
+  background-color: #eef2ff;
+  border-color: #eef2ff;
 }
 
 /* --- BENEFÍCIOS --- */

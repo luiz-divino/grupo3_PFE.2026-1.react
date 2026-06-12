@@ -81,24 +81,27 @@ p {
     gap: 12px;
 }
 
-.btn-login {
+.btn-login a {
+    display: inline-block;
     border: 1.5px solid #ffffff;
+    background-color: #ffffff;
     padding: 8px 16px;
     border-radius: 8px;
     text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
+    color: #0b1b5b;
+    font-weight: 700;
     transition:
         background-color 0.3s,
         color 0.3s;
 }
 
-.btn-login:hover {
-    background-color: #ffffff;
-    color: #0b1b5b;
+.btn-login a:hover {
+    background-color: #eef2ff;
+    border-color: #eef2ff;
 }
 
-.btn-register {
+.btn-register a {
+    display: inline-block;
     background-color: #ffffff;
     color: #0b1b5b;
     padding: 8px 16px;
@@ -108,7 +111,7 @@ p {
     transition: opacity 0.3s;
 }
 
-.btn-register:hover {
+.btn-register a:hover {
     opacity: 0.9;
 }
 
@@ -198,8 +201,8 @@ p {
     }
 
     .menu a,
-    .btn-login,
-    .btn-register {
+    .btn-login a,
+    .btn-register a {
         width: 100%;
         text-align: center;
     }
