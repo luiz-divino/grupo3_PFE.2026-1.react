@@ -1,14 +1,24 @@
-import { useState } from 'react';
-import "./contato.css"
+import { useState } from "react";
+import { FormSubmitFields } from "../../components/FormSubmitFields/FormSubmitFields.jsx";
+import { FORM_SUBMIT_PROPS } from "../../constants/formSubmit.js";
+import { useFormSubmit } from "../../hooks/useFormSubmit.js";
+import "./contato.css";
+
+const INITIAL_CONTATO = {
+    nome: "",
+    email: "",
+    assunto: "",
+    mensagem: "",
+};
+
+const validators = {
+    isName: (value) => /^[A-Za-zÀ-ÿ]+(\s+[A-Za-zÀ-ÿ]+)+$/.test(value.trim()),
+    isEmail: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+    hasText: (value, min = 1) => value.trim().length >= min,
+};
 
 export const Contato = () => {
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    assunto: '',
-    mensagem: ''
-  });
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [formData, setFormData] = useState(INITIAL_CONTATO);
   const [imageError, setImageError] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
@@ -20,12 +30,32 @@ export const Contato = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowSuccess(true);
-    setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
-    setTimeout(() => setShowSuccess(false), 5000);
+  const validar = () => {
+    const { nome, email, assunto, mensagem } = formData;
+
+    if (!validators.isName(nome)) {
+      return "Informe um nome completo válido.";
+    }
+    if (!validators.isEmail(email)) {
+      return "Informe um e-mail válido.";
+    }
+    if (!validators.hasText(assunto)) {
+      return "Informe o assunto da mensagem.";
+    }
+    if (!validators.hasText(mensagem, 10)) {
+      return "Descreva sua mensagem com mais detalhes.";
+    }
+
+    return "";
   };
+
+  const { handleSubmit, isSubmitting } = useFormSubmit({
+    subject: "Contato ACBrasil",
+    validate: validar,
+    onSuccess: () => setFormData(INITIAL_CONTATO),
+    successMessage:
+      "Mensagem enviada com sucesso! Retornaremos em breve.",
+  });
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -138,7 +168,16 @@ export const Contato = () => {
                         </div>
                     </div>
 
-                    <form className="formulario-card contato-form" onSubmit={handleSubmit}>
+                    <form
+                        className="formulario-card contato-form"
+                        {...FORM_SUBMIT_PROPS}
+                        onSubmit={handleSubmit}
+                        noValidate
+                    >
+                        <FormSubmitFields
+                            subject="Contato ACBrasil"
+                            formName="contato"
+                        />
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="nome">Nome completo *</label>
@@ -187,22 +226,21 @@ export const Contato = () => {
                               onChange={handleInputChange}
                               required></textarea>
                         </div>
-                        <button type="submit" className="btn-enviar contato-submit">
+                        <button
+                            type="submit"
+                            className="btn-enviar contato-submit"
+                            disabled={isSubmitting}
+                        >
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 strokeWidth="2">
                                 <line x1="22" y1="2" x2="11" y2="13" />
                                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
                             </svg>
-                            Enviar mensagem
+                            {isSubmitting ? "Enviando..." : "Enviar mensagem"}
                         </button>
                         <p className="form-privacidade">Ao enviar, você concorda com nossa <a
-                                href="../assets/docs/politica-privacidade.pdf" target="_blank" rel="noopener noreferrer">Política
+                                href="/docs/politica-privacidade.pdf" target="_blank" rel="noopener noreferrer">Política
                                 de Privacidade</a>.</p>
-                        {showSuccess && (
-                          <div className="form-success">
-                              ✅ Mensagem enviada com sucesso! Retornaremos em breve.
-                          </div>
-                        )}
                     </form>
 
                 </div>
