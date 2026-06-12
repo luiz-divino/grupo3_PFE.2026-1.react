@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
 import { Indicadores } from "../../components/Indicadores/Indicadores.jsx";
+import { PodcastCard } from "../../components/PodcastCard/PodcastCard.jsx";
 import { WebinarCard } from "../../components/WebinarsCard/WebinarCard.jsx";
 import {
     getYoutubeThumbnail,
@@ -12,10 +13,12 @@ import {
     buscarPostsDoBlog,
     separarPostsPorCategoria,
 } from "../../infrastructure/api/blog.js";
+import podcastData from "../../data/podcast.json";
 import webinarsData from "../../data/webinars.json";
 import "../Blog/blog.css";
 import "./home.css";
 
+const podcastsHome = (podcastData.conteudosYoutube ?? []).slice(0, 3);
 const webinars = webinarsData.webinarYoutube ?? [];
 const webinarDestaque = webinars[0];
 const webinarsHome = webinars.slice(1, 4);
@@ -212,19 +215,26 @@ export const Home = () => {
                         )}
                     </div>
 
-                    <div className="videos-section section-container">
+                    <div className="videos-section">
                         <div className="section-header-row">
                             <h2>Podcasts</h2>
                             <a
                                 href="https://youtube.com/playlist?list=PL98yzQXxvQjVDk60HdOp9dySACtnJErRO&si=ubJP88t5lplaJEAY"
                                 className="ver-todos"
                                 target="_blank"
-                                rel="noopener"
+                                rel="noopener noreferrer"
                             >
                                 Ver mais &rarr;
                             </a>
                         </div>
-                        <div className="videos-grid" id="videos-grid"></div>
+                        <div className="videos-grid home-podcast-grid" id="videos-grid">
+                            {podcastsHome.map((podcast) => (
+                                <PodcastCard
+                                    key={podcast.id}
+                                    podcast={podcast}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
