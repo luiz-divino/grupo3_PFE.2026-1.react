@@ -213,14 +213,16 @@
 
 .beneficio-card {
   background-color: #fff;
-  border: 1px solid #e4e9f2;
+  border: var(--card-border);
   border-radius: 14px;
   padding: 28px 26px;
   transition:
+    border-color 0.2s,
     box-shadow 0.2s,
     transform 0.2s;
 }
 .beneficio-card:hover {
+  border-color: var(--card-border-hover-color);
   box-shadow: 0 8px 28px rgba(26, 79, 196, 0.1);
   transform: translateY(-3px);
 }
@@ -348,7 +350,7 @@
   max-width: 720px;
   margin: 0 auto;
   background-color: #eef2fb;
-  border: 1px solid #dde4f4;
+  border: var(--card-border);
   border-radius: 14px;
   padding: 36px;
   display: flex;

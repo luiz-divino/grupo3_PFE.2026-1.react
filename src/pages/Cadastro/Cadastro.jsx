@@ -1,6 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FormSubmitFields } from "../../components/FormSubmitFields/FormSubmitFields.jsx";
+import { FORM_SUBMIT_PROPS } from "../../constants/formSubmit.js";
+import { useFormSubmit } from "../../hooks/useFormSubmit.js";
 import "./cadastro.css";
+import { Hero } from "../../components/Hero/Hero.jsx";
+
+const INITIAL_CADASTRO = {
+    nome: "",
+    email: "",
+    telefone: "",
+    cargo: "",
+    empresa: "",
+    linkedin: "",
+    motivo: "",
+};
 
 const beneficios = [
     "Acesso à área de membros",
@@ -21,12 +35,12 @@ const faqItems = [
         resposta: (
             <>
                 A ACBrasil oferece três modalidades:{" "}
-                <strong>Associado Efetivo</strong> (pessoa física ou jurídica que
-                colabora com a missão da associação mediante mensalidade),{" "}
-                <strong>Associado Mantenedor</strong> (pessoa jurídica que contribui
-                financeiramente ou com recursos para o desenvolvimento da ACBrasil) e{" "}
-                <strong>Associado Benemérito</strong> (reconhecido por contribuições
-                relevantes à instituição).
+                <strong>Associado Efetivo</strong> (pessoa física ou jurídica
+                que colabora com a missão da associação mediante mensalidade),{" "}
+                <strong>Associado Mantenedor</strong> (pessoa jurídica que
+                contribui financeiramente ou com recursos para o desenvolvimento
+                da ACBrasil) e <strong>Associado Benemérito</strong>{" "}
+                (reconhecido por contribuições relevantes à instituição).
             </>
         ),
     },
@@ -34,9 +48,9 @@ const faqItems = [
         pergunta: "Quanto tempo leva para meu cadastro ser aprovado?",
         resposta: (
             <>
-                O prazo médio de análise é de <strong>até 5 dias úteis</strong>. Você
-                recebe um e-mail assim que o cadastro for aprovado, com suas
-                credenciais de acesso à área de associados.
+                O prazo médio de análise é de <strong>até 5 dias úteis</strong>.
+                Você recebe um e-mail assim que o cadastro for aprovado, com
+                suas credenciais de acesso à área de associados.
             </>
         ),
     },
@@ -61,17 +75,7 @@ const validators = {
 };
 
 export const Cadastro = () => {
-    const [formData, setFormData] = useState({
-        nome: "",
-        email: "",
-        telefone: "",
-        cargo: "",
-        empresa: "",
-        linkedin: "",
-        motivo: "",
-    });
-    const [showSuccess, setShowSuccess] = useState(false);
-    const [errorMsg, setErrorMsg] = useState("");
+    const [formData, setFormData] = useState(INITIAL_CADASTRO);
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
     const handleInputChange = (e) => {
@@ -96,27 +100,13 @@ export const Cadastro = () => {
         return "";
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const erro = validar();
-        if (erro) {
-            setErrorMsg(erro);
-            setShowSuccess(false);
-            return;
-        }
-        setErrorMsg("");
-        setShowSuccess(true);
-        setFormData({
-            nome: "",
-            email: "",
-            telefone: "",
-            cargo: "",
-            empresa: "",
-            linkedin: "",
-            motivo: "",
-        });
-        setTimeout(() => setShowSuccess(false), 5000);
-    };
+    const { handleSubmit, isSubmitting } = useFormSubmit({
+        subject: "Cadastro ACBrasil",
+        validate: validar,
+        onSuccess: () => setFormData(INITIAL_CADASTRO),
+        successMessage:
+            "Cadastro enviado com sucesso! Em breve você receberá um e-mail com suas credenciais.",
+    });
 
     const toggleFaq = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -125,7 +115,7 @@ export const Cadastro = () => {
     return (
         <main>
             {/* HERO */}
-            <section className="hero-cad">
+            <Hero>
                 <div className="hero-cad-content">
                     <span className="hero-cad-badge">ASSOCIE-SE</span>
                     <h1>
@@ -143,7 +133,7 @@ export const Cadastro = () => {
                         </Link>
                     </div>
                 </div>
-            </section>
+            </Hero>
 
             {/* MODALIDADES */}
             <section className="gratuito-cad">
@@ -154,10 +144,10 @@ export const Cadastro = () => {
                         </span>
                         <h2>Encontre o modelo certo para você</h2>
                         <p>
-                            A ACBrasil conta com diferentes formas de participação —
-                            Associado Efetivo, Mantenedor e Benemérito — para que
-                            profissionais e organizações contribuam e se beneficiem de
-                            acordo com seu perfil.
+                            A ACBrasil conta com diferentes formas de
+                            participação — Associado Efetivo, Mantenedor e
+                            Benemérito — para que profissionais e organizações
+                            contribuam e se beneficiem de acordo com seu perfil.
                         </p>
                     </div>
 
@@ -192,15 +182,27 @@ export const Cadastro = () => {
                         <span className="cad-label">CADASTRO</span>
                         <h2>Faça parte da ACBrasil</h2>
                         <p>
-                            Preencha o formulário abaixo. Após a análise do seu cadastro,
-                            você receberá um e-mail com suas credenciais de acesso.
+                            Preencha o formulário abaixo. Após a análise do seu
+                            cadastro, você receberá um e-mail com suas
+                            credenciais de acesso.
                         </p>
                     </div>
 
-                    <form className="form-cad-card" onSubmit={handleSubmit} noValidate>
+                    <form
+                        className="form-cad-card"
+                        {...FORM_SUBMIT_PROPS}
+                        onSubmit={handleSubmit}
+                        noValidate
+                    >
+                        <FormSubmitFields
+                            subject="Cadastro ACBrasil"
+                            formName="cadastro"
+                        />
                         <div className="form-row">
                             <div className="form-group">
-                                <label htmlFor="cad-nome">Nome completo *</label>
+                                <label htmlFor="cad-nome">
+                                    Nome completo *
+                                </label>
                                 <div className="input-with-icon">
                                     <svg
                                         width="16"
@@ -227,7 +229,9 @@ export const Cadastro = () => {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="cad-email">E-mail profissional *</label>
+                                <label htmlFor="cad-email">
+                                    E-mail profissional *
+                                </label>
                                 <div className="input-with-icon">
                                     <svg
                                         width="16"
@@ -295,7 +299,14 @@ export const Cadastro = () => {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                     >
-                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                        <rect
+                                            x="2"
+                                            y="7"
+                                            width="20"
+                                            height="14"
+                                            rx="2"
+                                            ry="2"
+                                        />
                                         <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
                                     </svg>
                                     <input
@@ -354,7 +365,12 @@ export const Cadastro = () => {
                                         strokeLinejoin="round"
                                     >
                                         <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z" />
-                                        <rect x="2" y="9" width="4" height="12" />
+                                        <rect
+                                            x="2"
+                                            y="9"
+                                            width="4"
+                                            height="12"
+                                        />
                                         <circle cx="4" cy="4" r="2" />
                                     </svg>
                                     <input
@@ -383,17 +399,13 @@ export const Cadastro = () => {
                             ></textarea>
                         </div>
 
-                        <button type="submit" className="btn-enviar btn-enviar--cad">
-                            Enviar cadastro
+                        <button
+                            type="submit"
+                            className="btn-enviar btn-enviar--cad"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? "Enviando..." : "Enviar cadastro"}
                         </button>
-
-                        {errorMsg && <div className="form-error">{errorMsg}</div>}
-                        {showSuccess && (
-                            <div className="form-success">
-                                ✅ Cadastro enviado com sucesso! Em breve você receberá um
-                                e-mail com suas credenciais.
-                            </div>
-                        )}
 
                         <p className="form-privacidade">
                             Ao enviar este formulário, você concorda com nossa{" "}
@@ -455,7 +467,10 @@ export const Cadastro = () => {
                     <div className="cta-final-card">
                         <h3>Pronto para fazer parte?</h3>
                         <div className="cta-final-buttons">
-                            <a href="#form-cadastro" className="btn-cad-primary">
+                            <a
+                                href="#form-cadastro"
+                                className="btn-cad-primary"
+                            >
                                 Quero me associar &rarr;
                             </a>
                             <Link to="/contato" className="btn-cad-ghost">
