@@ -1,19 +1,45 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FormSubmitFields } from "../../components/FormSubmitFields/FormSubmitFields.jsx";
+import { FORM_SUBMIT_PROPS } from "../../constants/formSubmit.js";
+import { useFormSubmit } from "../../hooks/useFormSubmit.js";
 import "./entrar.css";
+
+const validators = {
+    isEmail: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+    hasText: (value) => value.trim().length > 0,
+};
 
 export const Entrar = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [manterConectado, setManterConectado] = useState(false);
 
-    const handleLogin = () => {
-        const email = document.getElementById("login-email").value.trim();
-        const senha = document.getElementById("login-senha").value.trim();
-        if (!email || !senha) {
-            alert("Preencha e-mail e senha para continuar.");
-            return;
+    const validate = () => {
+        if (!validators.isEmail(email)) {
+            return "Informe um e-mail válido.";
         }
-        alert("Funcionalidade de login será integrada ao sistema de autenticação.");
+        if (!validators.hasText(senha)) {
+            return "Informe sua senha para continuar.";
+        }
+        return "";
     };
+
+    const { handleSubmit, isSubmitting } = useFormSubmit({
+        subject: "Login ACBrasil",
+        validate,
+        onSuccess: () => {
+            setEmail("");
+            setSenha("");
+            setManterConectado(false);
+        },
+        successMessage:
+            "Solicitação enviada com sucesso! Em breve integraremos a autenticação.",
+        extraData: () => ({
+            manter_conectado: manterConectado ? "Sim" : "Não",
+        }),
+    });
 
     return (
         <main>
@@ -35,15 +61,27 @@ export const Entrar = () => {
                             </div>
                         </div>
 
-                        <div className="mb-login-form">
+                        <form
+                            className="mb-login-form"
+                            {...FORM_SUBMIT_PROPS}
+                            onSubmit={handleSubmit}
+                            noValidate
+                        >
+                            <FormSubmitFields
+                                subject="Login ACBrasil"
+                                formName="login-entrar"
+                            />
 
                             <div className="form-group">
                                 <label htmlFor="login-email">E-mail</label>
                                 <input
                                     type="email"
                                     id="login-email"
+                                    name="email"
                                     placeholder="seu@email.com.br"
                                     autoComplete="email"
+                                    value={email}
+                                    onChange={(event) => setEmail(event.target.value)}
                                 />
                             </div>
 
@@ -52,9 +90,12 @@ export const Entrar = () => {
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     id="login-senha"
+                                    name="senha"
                                     placeholder="••••••••"
                                     style={{ paddingRight: "42px" }}
                                     autoComplete="current-password"
+                                    value={senha}
+                                    onChange={(event) => setSenha(event.target.value)}
                                 />
                                 <button
                                     className="mb-toggle-senha"
@@ -71,14 +112,25 @@ export const Entrar = () => {
 
                             <div className="mb-login-options">
                                 <label className="mb-check-label">
-                                    <input type="checkbox" id="login-manter" />
+                                    <input
+                                        type="checkbox"
+                                        id="login-manter"
+                                        checked={manterConectado}
+                                        onChange={(event) =>
+                                            setManterConectado(event.target.checked)
+                                        }
+                                    />
                                     Manter conectado
                                 </label>
                                 <a href="#" className="mb-esqueci">Esqueci a senha</a>
                             </div>
 
-                            <button className="btn-enviar" type="button" onClick={handleLogin}>
-                                Entrar na minha conta
+                            <button
+                                className="btn-enviar"
+                                type="submit"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? "Enviando..." : "Entrar na minha conta"}
                             </button>
 
                             <p className="mb-sem-conta">
@@ -93,7 +145,7 @@ export const Entrar = () => {
                                 Conexão criptografada e protegida. Seus dados estão seguros.
                             </div>
 
-                        </div>
+                        </form>
                     </div>
 
                     <Link to="/" className="login-voltar">← Voltar para o início</Link>
