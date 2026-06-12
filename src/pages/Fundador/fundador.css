@@ -17,7 +17,7 @@
     grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
     gap: 0;
     background: #fff;
-    border: 2px solid rgba(252, 185, 0, 0.9);
+    border: var(--card-border);
     border-radius: 28px;
     overflow: hidden;
     box-shadow: 0 22px 60px rgba(26, 35, 126, 0.12);
@@ -26,8 +26,8 @@
 
 .fundador-detalhe-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 26px 70px rgba(252, 185, 0, 0.16);
-    border-color: #fcb900;
+    box-shadow: 0 26px 70px rgba(26, 79, 196, 0.16);
+    border-color: var(--card-border-hover-color);
 }
 
 .fundador-detalhe-media {
