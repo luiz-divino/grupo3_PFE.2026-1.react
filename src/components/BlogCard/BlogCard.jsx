@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
     decodificarEntidadesHtml,
     formatarDataPublicacao,
@@ -19,16 +20,11 @@ export const BlogCard = ({ post, showCategories = true }) => {
     const tag = obterTagPost(post);
     const tagClasse = tag === "Artigo" ? "mercado" : "associacao";
     const categorias = obterCategoriasPost(post);
-    const url = post.link || "#";
+    const artigoUrl = `/artigo/${post.id}`;
 
     return (
         <article className="blog-card">
-            <a
-                className="blog-card-link"
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-            >
+            <Link className="blog-card-link" to={artigoUrl}>
                 <div className="blog-card-img">
                     <img src={imagem} alt={titulo} loading="lazy" />
                 </div>
@@ -55,7 +51,7 @@ export const BlogCard = ({ post, showCategories = true }) => {
                         <span className="ler-mais">Ler mais &rarr;</span>
                     </div>
                 </div>
-            </a>
+            </Link>
         </article>
     );
 };
