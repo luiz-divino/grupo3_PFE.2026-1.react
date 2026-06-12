@@ -1,32 +1,53 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './membros.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FormSubmitFields } from "../../components/FormSubmitFields/FormSubmitFields.jsx";
+import { FORM_SUBMIT_PROPS } from "../../constants/formSubmit.js";
+import { useFormSubmit } from "../../hooks/useFormSubmit.js";
+import "./membros.css";
+
+const validators = {
+    isEmail: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+    hasText: (value) => value.trim().length > 0,
+};
 
 export const Membros = () => {
     const [showSenha, setShowSenha] = useState(false);
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
     const [manterConectado, setManterConectado] = useState(false);
 
-    const handleLogin = () => {
-        if (!email.trim() || !senha.trim()) {
-            alert('Preencha e-mail e senha para continuar.');
-            return;
+    const validate = () => {
+        if (!validators.isEmail(email)) {
+            return "Informe um e-mail válido.";
         }
-        alert('Funcionalidade de login será integrada ao sistema de autenticação.');
+        if (!validators.hasText(senha)) {
+            return "Informe sua senha para continuar.";
+        }
+        return "";
     };
+
+    const { handleSubmit, isSubmitting } = useFormSubmit({
+        subject: "Login Área de Membros ACBrasil",
+        validate,
+        onSuccess: () => {
+            setEmail("");
+            setSenha("");
+            setManterConectado(false);
+        },
+        successMessage:
+            "Solicitação enviada com sucesso! Em breve integraremos a autenticação.",
+        extraData: () => ({
+            manter_conectado: manterConectado ? "Sim" : "Não",
+        }),
+    });
 
     return (
         <main>
 
-            {/* =============================================
-                HERO — LOGIN CARD CENTRALIZADO
-                ============================================= */}
             <section className="mb-hero">
                 <div className="section-container">
                     <div className="mb-hero-grid">
 
-                        {/* Card de login */}
                         <div className="mb-login-card">
                             <div className="mb-login-header">
                                 <div className="mb-login-icon">
@@ -41,30 +62,42 @@ export const Membros = () => {
                                 </div>
                             </div>
 
-                            <div className="mb-login-form">
+                            <form
+                                className="mb-login-form"
+                                {...FORM_SUBMIT_PROPS}
+                                onSubmit={handleSubmit}
+                                noValidate
+                            >
+                                <FormSubmitFields
+                                    subject="Login Área de Membros ACBrasil"
+                                    formName="login-membros"
+                                />
+
                                 <div className="form-group">
                                     <label htmlFor="mb-email">E-mail</label>
                                     <input
                                         type="email"
                                         id="mb-email"
+                                        name="email"
                                         placeholder="seu@email.com.br"
                                         value={email}
-                                        onChange={e => setEmail(e.target.value)}
+                                        onChange={(event) => setEmail(event.target.value)}
                                     />
                                 </div>
-                                <div className="form-group" style={{ position: 'relative' }}>
+                                <div className="form-group" style={{ position: "relative" }}>
                                     <label htmlFor="mb-senha">Senha</label>
                                     <input
-                                        type={showSenha ? 'text' : 'password'}
+                                        type={showSenha ? "text" : "password"}
                                         id="mb-senha"
+                                        name="senha"
                                         placeholder="••••••••"
-                                        style={{ paddingRight: '42px' }}
+                                        style={{ paddingRight: "42px" }}
                                         value={senha}
-                                        onChange={e => setSenha(e.target.value)}
+                                        onChange={(event) => setSenha(event.target.value)}
                                     />
                                     <button
                                         className="mb-toggle-senha"
-                                        onClick={() => setShowSenha(prev => !prev)}
+                                        onClick={() => setShowSenha((prev) => !prev)}
                                         type="button"
                                         aria-label="Mostrar senha"
                                     >
@@ -81,15 +114,21 @@ export const Membros = () => {
                                             type="checkbox"
                                             id="mb-manter"
                                             checked={manterConectado}
-                                            onChange={e => setManterConectado(e.target.checked)}
+                                            onChange={(event) =>
+                                                setManterConectado(event.target.checked)
+                                            }
                                         />
                                         Manter conectado
                                     </label>
                                     <a href="#" className="mb-esqueci">Esqueci a senha</a>
                                 </div>
 
-                                <button className="btn-enviar" type="button" onClick={handleLogin}>
-                                    Entrar na minha conta
+                                <button
+                                    className="btn-enviar"
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? "Enviando..." : "Entrar na minha conta"}
                                 </button>
 
                                 <p className="mb-sem-conta">
@@ -102,16 +141,13 @@ export const Membros = () => {
                                     </svg>
                                     Conexão criptografada e protegida. Seus dados estão seguros.
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                     </div>
                 </div>
             </section>
 
-            {/* =============================================
-                CTA FINAL
-                ============================================= */}
             <section className="mb-cta-section">
                 <div className="section-container">
                     <h2>Pronto para entrar?</h2>

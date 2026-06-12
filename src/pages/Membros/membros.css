@@ -87,7 +87,7 @@
 /* ── LOGIN CARD ─────────────────────────────── */
 .mb-login-card {
     background-color: #fff;
-    border: 1px solid #dfe6f5;
+    border: var(--card-border);
     border-radius: 16px;
     box-shadow: 0 12px 36px rgba(26, 26, 102, 0.08);
     overflow: hidden;
