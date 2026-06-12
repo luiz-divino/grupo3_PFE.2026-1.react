@@ -1,4 +1,4 @@
-import { getAllPosts } from "./wordpress.js";
+import { getAllPosts, getPostById } from "./wordpress.js";
 
 export const BLOG_ARTIGOS_CATEGORY_ID = 20;
 export const BLOG_POSTS_PER_PAGE = 6;
@@ -183,6 +183,26 @@ export const paginarLista = (
         pagina: paginaAtual,
         totalPaginas,
     };
+};
+
+export const buscarPostPorId = async (id) => {
+    const postId = Number(id);
+
+    if (!postId) {
+        throw new Error("ID de artigo inválido.");
+    }
+
+    const cachedPosts = lerCachePosts();
+    const postEmCache = cachedPosts.find((post) => post.id === postId);
+
+    if (postEmCache) {
+        return postEmCache;
+    }
+
+    const post = await getPostById(postId, { embed: true });
+    salvarCachePosts(ordenarPostsMaisRecentes([...cachedPosts, post]));
+
+    return post;
 };
 
 export const buscarPostsDoBlog = async () => {
