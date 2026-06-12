@@ -20,6 +20,16 @@
     text-transform: uppercase;
 }
 
+.webinar-aviso-section {
+    padding: 56px 0 64px;
+    background-color: #f7f9fc;
+}
+
+.webinar-aviso-section .section-container {
+    width: min(100% - 40px, 1156px);
+    margin-inline: auto;
+}
+
 .webinars-page-section {
     padding: 64px 0 80px;
     background-color: #f7f9fc;
@@ -88,6 +98,14 @@
 }
 
 @media (max-width: 600px) {
+    .webinar-aviso-section {
+        padding: 40px 0 48px;
+    }
+
+    .webinar-aviso-section .section-container {
+        width: min(100% - 32px, 1156px);
+    }
+
     .webinars-page-section {
         padding: 48px 0 64px;
     }

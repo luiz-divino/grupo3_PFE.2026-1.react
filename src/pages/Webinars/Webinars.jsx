@@ -1,3 +1,4 @@
+import { WebinarAvisoForm } from "../../components/Form/Form.jsx";
 import { Hero } from "../../components/Hero/Hero";
 import { WebinarCard } from "../../components/WebinarsCard/WebinarCard";
 import webinarsData from "../../data/webinars.json";
@@ -20,6 +21,12 @@ export const Webinars = () => {
                     </p>
                 </div>
             </Hero>
+
+            <section className="webinar-aviso-section">
+                <div className="section-container">
+                    <WebinarAvisoForm />
+                </div>
+            </section>
 
             <section className="webinars-page-section">
                 <div className="section-container">
