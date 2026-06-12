@@ -27,16 +27,16 @@ const BlogGallery = ({
     suggestionsId,
     paginationLabel,
     searchPlaceholder,
-    contentId,
+    activeContent,
 }) => {
     const paginacao = paginarLista(posts, currentPage, BLOG_POSTS_PER_PAGE);
 
     return (
         <div
             className="blog-gallery-block"
-            id={`${contentId}-panel`}
+            id="blog-content-panel"
             role="tabpanel"
-            aria-labelledby={`${contentId}-tab`}
+            aria-labelledby={`${activeContent}-tab`}
         >
             <div className="section-header-row">
                 <h2>{title}</h2>
@@ -234,7 +234,6 @@ export const Blog = () => {
                   suggestionsId: "blog-search-artigos",
                   paginationLabel: "Paginação de artigos",
                   searchPlaceholder: "Título ou categoria do artigo",
-                  contentId: "artigos",
               }
             : {
                   title: "Newsletter",
@@ -250,7 +249,6 @@ export const Blog = () => {
                   suggestionsId: "blog-search-newsletter",
                   paginationLabel: "Paginação de newsletters",
                   searchPlaceholder: "Título ou categoria da newsletter",
-                  contentId: "newsletter",
               };
 
     return (
@@ -285,7 +283,7 @@ export const Blog = () => {
                                     type="button"
                                     role="tab"
                                     aria-selected={isActive}
-                                    aria-controls={`${tab.id}-panel`}
+                                    aria-controls="blog-content-panel"
                                     onClick={() => handleContentChange(tab.id)}
                                 >
                                     {tab.label}
@@ -297,6 +295,7 @@ export const Blog = () => {
                     <div className="blog-gallery-grid">
                         <BlogGallery
                             {...activeGallery}
+                            activeContent={activeContent}
                             loading={loading}
                             error={error}
                         />
