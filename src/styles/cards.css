@@ -1,0 +1,5 @@
+:root {
+    --card-border-color: #1a4fc4;
+    --card-border: 1px solid var(--card-border-color);
+    --card-border-hover-color: #0f3da8;
+}
