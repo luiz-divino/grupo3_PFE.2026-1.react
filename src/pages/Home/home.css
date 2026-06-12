@@ -904,6 +904,12 @@
         align-items: flex-start;
     }
 
+    .section-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .section-container {
         width: min(100% - 32px, 1156px);
     }
