@@ -26,11 +26,18 @@ const BlogGallery = ({
     emptyMessage,
     suggestionsId,
     paginationLabel,
+    searchPlaceholder,
+    contentId,
 }) => {
     const paginacao = paginarLista(posts, currentPage, BLOG_POSTS_PER_PAGE);
 
     return (
-        <div className="blog-gallery-block">
+        <div
+            className="blog-gallery-block"
+            id={`${contentId}-panel`}
+            role="tabpanel"
+            aria-labelledby={`${contentId}-tab`}
+        >
             <div className="section-header-row">
                 <h2>{title}</h2>
                 <div className="blog-search-wrap">
@@ -45,7 +52,7 @@ const BlogGallery = ({
                         className="blog-search-input"
                         type="search"
                         list={`${suggestionsId}-options`}
-                        placeholder="Título ou categoria"
+                        placeholder={searchPlaceholder}
                         autoComplete="off"
                         value={searchValue}
                         onChange={(event) => onSearchChange(event.target.value)}
@@ -117,10 +124,16 @@ const BlogGallery = ({
     );
 };
 
+const BLOG_CONTENT_TABS = [
+    { id: "artigos", label: "Artigos" },
+    { id: "newsletter", label: "Newsletter" },
+];
+
 export const Blog = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [activeContent, setActiveContent] = useState("artigos");
     const [termoArtigos, setTermoArtigos] = useState("");
     const [termoNewsletter, setTermoNewsletter] = useState("");
     const [paginaArtigos, setPaginaArtigos] = useState(1);
@@ -133,6 +146,18 @@ export const Blog = () => {
 
     const handleTermoNewsletterChange = (value) => {
         setTermoNewsletter(value);
+        setPaginaNewsletter(1);
+    };
+
+    const handleContentChange = (contentId) => {
+        if (contentId === activeContent) {
+            return;
+        }
+
+        setActiveContent(contentId);
+        setTermoArtigos("");
+        setTermoNewsletter("");
+        setPaginaArtigos(1);
         setPaginaNewsletter(1);
     };
 
@@ -194,6 +219,40 @@ export const Blog = () => {
         [newsletter],
     );
 
+    const activeGallery =
+        activeContent === "artigos"
+            ? {
+                  title: "Artigos",
+                  searchLabel: "Buscar artigos",
+                  searchValue: termoArtigos,
+                  onSearchChange: handleTermoArtigosChange,
+                  suggestions: sugestoesArtigos,
+                  posts: artigosFiltrados,
+                  currentPage: paginaArtigos,
+                  onPageChange: setPaginaArtigos,
+                  emptyMessage: "Nenhum artigo encontrado para esse filtro.",
+                  suggestionsId: "blog-search-artigos",
+                  paginationLabel: "Paginação de artigos",
+                  searchPlaceholder: "Título ou categoria do artigo",
+                  contentId: "artigos",
+              }
+            : {
+                  title: "Newsletter",
+                  searchLabel: "Buscar newsletters",
+                  searchValue: termoNewsletter,
+                  onSearchChange: handleTermoNewsletterChange,
+                  suggestions: sugestoesNewsletter,
+                  posts: newsletterFiltrados,
+                  currentPage: paginaNewsletter,
+                  onPageChange: setPaginaNewsletter,
+                  emptyMessage:
+                      "Nenhuma newsletter encontrada para esse filtro.",
+                  suggestionsId: "blog-search-newsletter",
+                  paginationLabel: "Paginação de newsletters",
+                  searchPlaceholder: "Título ou categoria da newsletter",
+                  contentId: "newsletter",
+              };
+
     return (
         <main>
             <Hero banner={banner}>
@@ -210,42 +269,36 @@ export const Blog = () => {
 
             <section className="blog-section">
                 <div className="section-container">
-                    <div className="section-label">
-                        <span className="label-bar"></span>
-                        Blog &amp; Newsletter
+                    <div
+                        className="blog-content-tabs"
+                        role="tablist"
+                        aria-label="Alternar conteúdo do blog"
+                    >
+                        {BLOG_CONTENT_TABS.map((tab) => {
+                            const isActive = activeContent === tab.id;
+
+                            return (
+                                <button
+                                    key={tab.id}
+                                    id={`${tab.id}-tab`}
+                                    className={`blog-content-tab${isActive ? " active" : ""}`}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={isActive}
+                                    aria-controls={`${tab.id}-panel`}
+                                    onClick={() => handleContentChange(tab.id)}
+                                >
+                                    {tab.label}
+                                </button>
+                            );
+                        })}
                     </div>
 
                     <div className="blog-gallery-grid">
                         <BlogGallery
-                            title="Artigos"
-                            searchLabel="Buscar artigos"
-                            searchValue={termoArtigos}
-                            onSearchChange={handleTermoArtigosChange}
-                            suggestions={sugestoesArtigos}
-                            posts={artigosFiltrados}
-                            currentPage={paginaArtigos}
-                            onPageChange={setPaginaArtigos}
+                            {...activeGallery}
                             loading={loading}
                             error={error}
-                            emptyMessage="Nenhum artigo encontrado para esse filtro."
-                            suggestionsId="blog-search-artigos"
-                            paginationLabel="Paginação de artigos"
-                        />
-
-                        <BlogGallery
-                            title="Newsletter"
-                            searchLabel="Buscar newsletters"
-                            searchValue={termoNewsletter}
-                            onSearchChange={handleTermoNewsletterChange}
-                            suggestions={sugestoesNewsletter}
-                            posts={newsletterFiltrados}
-                            currentPage={paginaNewsletter}
-                            onPageChange={setPaginaNewsletter}
-                            loading={loading}
-                            error={error}
-                            emptyMessage="Nenhuma newsletter encontrada para esse filtro."
-                            suggestionsId="blog-search-newsletter"
-                            paginationLabel="Paginação de newsletters"
                         />
                     </div>
                 </div>
