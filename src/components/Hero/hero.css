@@ -38,13 +38,14 @@
     line-height: 1.05;
     font-weight: 700;
     margin: 0 0 0.75rem;
-    color: inherit; /* preserva cor definida pela página */
+    color: #fcb900; /* preserva cor definida pela página */
     text-shadow: 0 8px 24px rgba(3, 10, 30, 0.55);
     max-width: 90ch;
 }
 
 .hero-content p {
     font-size: 1.125rem; /* ~18px */
+    font-weight: bold;
     line-height: 1.6;
     margin: 0;
     color: rgba(255, 255, 255, 0.95);

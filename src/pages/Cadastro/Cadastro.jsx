@@ -1,4 +1,5 @@
 import { useState } from "react";
+import banner from "../../assets/images/backgrounds/fundo-amarelo.jpg";
 import { Link } from "react-router-dom";
 import { FormSubmitFields } from "../../components/FormSubmitFields/FormSubmitFields.jsx";
 import { FORM_SUBMIT_PROPS } from "../../constants/formSubmit.js";
@@ -115,7 +116,7 @@ export const Cadastro = () => {
     return (
         <main>
             {/* HERO */}
-            <Hero>
+            <Hero banner={banner}>
                 <div className="hero-cad-content">
                     <span className="hero-cad-badge">ASSOCIE-SE</span>
                     <h1>

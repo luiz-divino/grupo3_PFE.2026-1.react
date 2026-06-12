@@ -4,6 +4,7 @@ import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
 import { Indicadores } from "../../components/Indicadores/Indicadores.jsx";
 import { PodcastCard } from "../../components/PodcastCard/PodcastCard.jsx";
+import banner from "../../assets/images/fundo-hero.jpg";
 import { WebinarCard } from "../../components/WebinarsCard/WebinarCard.jsx";
 import {
     getYoutubeThumbnail,
@@ -66,7 +67,7 @@ export const Home = () => {
 
     return (
         <main>
-            <Hero>
+            <Hero banner={banner}>
                 <div className="hero-text-container">
                     <h1>
                         ASSOCIAÇÃO DE{" "}

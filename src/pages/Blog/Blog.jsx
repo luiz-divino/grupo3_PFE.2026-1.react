@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import banner from "../../assets/images/backgrounds/fundo-zul.jpg";
 import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
 import {
@@ -195,7 +196,7 @@ export const Blog = () => {
 
     return (
         <main>
-            <Hero>
+            <Hero banner={banner}>
                 <div className="blog-hero-content">
                     <span className="blog-badge">INSTITUCIONAL</span>
                     <h1>Conteúdo Institucional e Análises Estratégicas</h1>
