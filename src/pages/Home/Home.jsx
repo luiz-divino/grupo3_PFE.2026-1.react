@@ -109,18 +109,14 @@ export const Home = () => {
                     <div className="destaque-grid" id="webinar-destaque">
                         {webinarDestaque ? (
                             <>
-                                <a
+                                <div
                                     className="destaque-image-card webinar-featured-media"
-                                    href={webinarDestaque.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={`Assistir ${webinarDestaque.titulo} no YouTube`}
                                 >
                                     <img
                                         src={getYoutubeThumbnail(
                                             webinarDestaque.capa,
                                         )}
-                                        alt={`Capa do ${webinarDestaque.titulo}`}
+                                        alt=""
                                         onError={(event) =>
                                             handleYoutubeThumbnailError(
                                                 event,
@@ -132,12 +128,14 @@ export const Home = () => {
                                         {webinarDestaque.tag}
                                     </span>
                                     <div className="destaque-image-caption">
-                                        <h3>{webinarDestaque.titulo}</h3>
+                                        <p className="destaque-image-title">
+                                            {webinarDestaque.titulo}
+                                        </p>
                                         <p className="destaque-meta">
                                             Webinar {webinarDestaque.id}
                                         </p>
                                     </div>
-                                </a>
+                                </div>
 
                                 <div className="destaque-content">
                                     <h2>{webinarDestaque.titulo}</h2>

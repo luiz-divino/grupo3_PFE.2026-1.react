@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WebinarAvisoForm } from "../../components/Form/Form.jsx";
 import { Hero } from "../../components/Hero/Hero";
 import { WebinarCard } from "../../components/WebinarsCard/WebinarCard";
@@ -22,9 +23,25 @@ export const Webinars = () => {
                 </div>
             </Hero>
 
-            <section className="webinar-aviso-section">
+            <section className="webinars-cta-section">
                 <div className="section-container">
-                    <WebinarAvisoForm />
+                    <div className="webinars-final-cta">
+                        <h2>Quer acompanhar os próximos encontros?</h2>
+                        <div className="webinars-final-cta__actions">
+                            <a
+                                href="#webinar-aviso"
+                                className="webinars-final-cta__primary"
+                            >
+                                Quero ser avisado(a) &rarr;
+                            </a>
+                            <Link
+                                to="/contato"
+                                className="webinars-final-cta__secondary"
+                            >
+                                Falar com a equipe
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -45,6 +62,12 @@ export const Webinars = () => {
                             <WebinarCard key={webinar.id} webinar={webinar} />
                         ))}
                     </div>
+                </div>
+            </section>
+
+            <section className="webinar-aviso-section" id="webinar-aviso">
+                <div className="section-container">
+                    <WebinarAvisoForm />
                 </div>
             </section>
         </main>

@@ -14,7 +14,7 @@ export const Footer = () => {
                     <div className="footer-col">
                         <img
                             src={logo}
-                            alt="Logo ACB"
+                            alt=""
                             className="footer-logo"
                         />
                         <p>
@@ -38,7 +38,7 @@ export const Footer = () => {
                                 <Link to="/contato">Contato</Link>
                             </li>
                             <li>
-                                <Link to="/cadastro">Cadastro</Link>
+                                <Link to="/cadastro">Associe-se</Link>
                             </li>
                         </ul>
                     </div>
@@ -51,26 +51,9 @@ export const Footer = () => {
                                 <Link to="/blog">Blog</Link>
                             </li>
                             <li>
-                                <Link to="/eventos">Eventos</Link>
+                                <Link to="/webinars">Webinars</Link>
                             </li>
                         </ul>
-                        <details className="footer-lgpd">
-                            <summary>LGPD</summary>
-                            <a
-                                href={privPdf}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Política de Privacidade
-                            </a>
-                            <a
-                                href={cookiesPdf}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Política de Cookies
-                            </a>
-                        </details>
                     </div>
 
                     {/* Coluna 4 - Contato */}
@@ -94,14 +77,14 @@ export const Footer = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Política de Privacidade
+                            Política de Privacidade (PDF)
                         </a>
                         <a
                             href={cookiesPdf}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Política de Cookies
+                            Política de Cookies (PDF)
                         </a>
                     </div>
                 </div>

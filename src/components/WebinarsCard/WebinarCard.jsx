@@ -17,12 +17,11 @@ export const WebinarCard = ({ webinar, className = "" }) => {
             href={webinar.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Assistir ${webinar.titulo} no YouTube`}
         >
             <div className="webinar-card-media">
                 <img
                     src={getYoutubeThumbnail(webinar.capa)}
-                    alt={`Capa do ${webinar.titulo}`}
+                    alt=""
                     loading="lazy"
                     onError={(event) =>
                         handleYoutubeThumbnailError(event, webinar.capa)

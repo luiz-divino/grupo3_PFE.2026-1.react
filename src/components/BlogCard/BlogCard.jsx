@@ -26,7 +26,7 @@ export const BlogCard = ({ post, showCategories = true }) => {
         <article className="blog-card">
             <Link className="blog-card-link" to={artigoUrl}>
                 <div className="blog-card-img">
-                    <img src={imagem} alt={titulo} loading="lazy" />
+                    <img src={imagem} alt="" loading="lazy" />
                 </div>
                 <div className="blog-card-body">
                     <span className={`blog-tag ${tagClasse}`}>{tag}</span>

@@ -18,7 +18,7 @@
     font-weight: 500;
     line-height: 1.6;
     margin-bottom: 30px;
-    text-align: justify;
+    text-align: left;
 }
 
 .highlight {
@@ -153,7 +153,7 @@
         transform 0.2s;
 }
 
-.destaque-image-card:hover {
+a.destaque-image-card:hover {
     border-color: var(--card-border-hover-color);
     box-shadow: 0 18px 42px rgba(26, 79, 196, 0.16);
     transform: translateY(-3px);
@@ -193,7 +193,7 @@
     color: #fff;
 }
 
-.destaque-image-caption h3 {
+.destaque-image-title {
     margin: 0 0 8px;
     font-size: clamp(15px, 1.6vw, 18px);
     font-weight: 700;

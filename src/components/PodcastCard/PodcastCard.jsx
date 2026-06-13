@@ -20,12 +20,11 @@ export const PodcastCard = ({ podcast, className = "" }) => {
             href={podcast.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Assistir ${podcast.titulo} no YouTube`}
         >
             <div className="webinar-card-media">
                 <img
                     src={getYoutubeThumbnail(podcast.capa)}
-                    alt={`Capa do ${podcast.titulo}`}
+                    alt=""
                     loading="lazy"
                     onError={(event) =>
                         handleYoutubeThumbnailError(event, podcast.capa)

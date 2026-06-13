@@ -107,7 +107,7 @@ export const QuemSomos = () => {
                         {associados.map((associado) => (
                             <div key={associado.id} className="fundador-card">
                                 <div className="fundador-card__media">
-                                    <img src={associado.foto} alt={associado.nome} />
+                                    <img src={associado.foto} alt="" />
                                 </div>
                                 <div className="fundador-card__body">
                                     <h3 className="fundador-card__name">{associado.nome}</h3>

@@ -30,9 +30,7 @@ export const Nav = () => {
                 className={`nav-container${isOpen ? " nav-open" : ""}`}
             >
                 <div className="logo">
-                    <Link to="/" onClick={closeMenu}>
-                        <img src={logo} alt="Logo da ACB" />
-                    </Link>
+                    <img src={logo} alt="ACBrasil" />
                 </div>
 
                 <button
@@ -54,7 +52,7 @@ export const Nav = () => {
                     onClick={closeMenu}
                 >
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">Início</Link>
                     </li>
                     <li>
                         <Link to="/quem-somos">Quem Somos</Link>
