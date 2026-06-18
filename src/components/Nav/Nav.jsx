@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./nav.css";
 
-const logo = "/images/logo-acb.png";
+import logo from "../../assets/Logo_acbrasil.png";
 
 export const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ export const Nav = () => {
                     aria-label="Ir para o início"
                     onClick={handleLogoClick}
                 >
-                    <img src={logo} alt="Associação de Conselheiros do Brasil" />
+                    <img src={logo} className="logo-img" alt="Associação de Conselheiros do Brasil" />
                 </Link>
 
                 <button

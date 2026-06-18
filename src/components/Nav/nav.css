@@ -63,8 +63,8 @@ p {
     outline-offset: 4px;
 }
 
-.logo img {
-    height: 60px;
+.logo-img {
+    height: 70px;
     display: block;
 }
 
@@ -221,7 +221,7 @@ p {
     }
 
     .logo img {
-        height: 52px;
+        height: 62px;
     }
 }
 
@@ -232,7 +232,7 @@ p {
     }
 
     .logo img {
-        height: 46px;
+        height: 56px;
     }
 
     .menu-toggle {
