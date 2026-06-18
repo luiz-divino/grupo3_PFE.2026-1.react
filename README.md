@@ -11,7 +11,7 @@
 
 Website institucional responsivo desenvolvido para a **Associação de Conselheiros do Brasil (AC Brasil)** como entrega final da disciplina de **Front-End Engineering**, no curso de **Engenharia de Software**.
 
-- **Demo ao vivo:** `<link-demo>`
+- **Demo ao vivo:** [Ac Brasil Website](https://grupo3-pfe-web-2026-1.vercel.app/)
 - **Cliente:** Associação de Conselheiros do Brasil (AC Brasil)
 - **Disciplina:** Front-End Engineering
 - **Equipe:** 7 integrantes
@@ -54,7 +54,7 @@ O desenvolvimento foi conduzido em **3 fases principais**, com foco em entrega i
 
 ### 1. Documentação e Prototipação
 
-Na primeira fase, a equipe trabalhou em um repositório separado dedicado à descoberta e ao planejamento do produto: `<repo-documentacao>`.
+Na primeira fase, a equipe trabalhou em um repositório separado dedicado à descoberta e ao planejamento do produto: [Documentação](https://github.com/luiz-divino/grupo3_pfe_2026.1).
 
 Principais entregas desta etapa:
 
@@ -70,7 +70,7 @@ Essa fase foi essencial para reduzir ambiguidades, alinhar expectativas com o cl
 
 ### 2. Primeiro Entregável: MVP Vanilla
 
-Na segunda fase, a equipe desenvolveu um **MVP com HTML, CSS e JavaScript puro**, disponível no repositório: `<repo-vanilla>`.
+Na segunda fase, a equipe desenvolveu um **MVP com HTML, CSS e JavaScript puro**, disponível no repositório: [MVP Vanilla](https://github.com/Damascenopog/grupo3_pfe_2026.1-code).
 
 Objetivos do MVP:
 
@@ -242,7 +242,7 @@ npm run lint      # executa a análise de lint
 
 ## Equipe
 
-- **`<Luiz Fernando Silva Divino>` - Scrum Master & Desenvolvedor**
+- `<Luiz Fernando Silva Divino>` - `<Scrum Master & Desenvolvedor>`
 - `<Vinícius Machado>` - `<Desenvolvedor>`
 - `<Antonio Damasceno>` - `<Desenvolvedor>`
 - `<Arhur Calebe>` - `<Desenvolvedor>`
