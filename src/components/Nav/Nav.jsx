@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo-acb.png";
 import "./nav.css";
+
+const logo = "/images/logo-acb.png";
 
 export const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,15 +24,22 @@ export const Nav = () => {
 
     const toggleMenu = () => setIsOpen((open) => !open);
     const closeMenu = () => setIsOpen(false);
+    const handleLogoClick = () => {
+        closeMenu();
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
 
     return (
         <header className="top-header">
-            <nav
-                className={`nav-container${isOpen ? " nav-open" : ""}`}
-            >
-                <div className="logo">
-                    <img src={logo} alt="ACBrasil" />
-                </div>
+            <nav className={`nav-container${isOpen ? " nav-open" : ""}`}>
+                <Link
+                    className="logo"
+                    to="/"
+                    aria-label="Ir para o início"
+                    onClick={handleLogoClick}
+                >
+                    <img src={logo} alt="Associação de Conselheiros do Brasil" />
+                </Link>
 
                 <button
                     className="menu-toggle"
@@ -46,11 +54,7 @@ export const Nav = () => {
                     <span />
                 </button>
 
-                <ul
-                    className="menu"
-                    id="main-nav-menu"
-                    onClick={closeMenu}
-                >
+                <ul className="menu" id="main-nav-menu" onClick={closeMenu}>
                     <li>
                         <Link to="/">Início</Link>
                     </li>

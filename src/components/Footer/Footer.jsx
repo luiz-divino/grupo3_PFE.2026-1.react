@@ -1,9 +1,10 @@
 import "./footer.css";
-import logo from "../../assets/images/logo-acb.png";
 import privPdf from "/docs/politica-privacidade.pdf";
 import cookiesPdf from "/docs/politica-cookies.pdf";
 
 import { Link } from "react-router-dom";
+
+const logo = "/images/logo-acb.png";
 
 export const Footer = () => {
     return (
@@ -14,7 +15,7 @@ export const Footer = () => {
                     <div className="footer-col">
                         <img
                             src={logo}
-                            alt=""
+                            alt="Associação de Conselheiros do Brasil"
                             className="footer-logo"
                         />
                         <p>
