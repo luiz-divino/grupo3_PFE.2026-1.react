@@ -15,7 +15,6 @@ Website institucional responsivo desenvolvido para a **Associação de Conselhei
 - **Cliente:** Associação de Conselheiros do Brasil (AC Brasil)
 - **Disciplina:** Front-End Engineering
 - **Equipe:** 7 integrantes
-- **Meu papel:** Scrum Master & Desenvolvedor Frontend
 - **Status:** entrega final em React, incorporando feedbacks do cliente
 
 ## Sumário
