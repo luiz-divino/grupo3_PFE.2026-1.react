@@ -33,7 +33,7 @@ export const BackToTop = () => {
         });
     };
 
-    if (pathname === "/entrar") {
+    if (pathname === "/entrar" || pathname.startsWith("/fundador/")) {
         return null;
     }
 

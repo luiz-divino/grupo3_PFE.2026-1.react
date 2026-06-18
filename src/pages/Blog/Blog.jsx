@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import banner from "../../assets/images/backgrounds/fundo-zul.jpg";
 import { BlogCard } from "../../components/BlogCard/BlogCard";
 import { Hero } from "../../components/Hero/Hero";
@@ -130,10 +131,13 @@ const BLOG_CONTENT_TABS = [
 ];
 
 export const Blog = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const contentParam = searchParams.get("conteudo");
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [activeContent, setActiveContent] = useState("artigos");
+    const activeContent =
+        contentParam === "newsletter" ? "newsletter" : "artigos";
     const [termoArtigos, setTermoArtigos] = useState("");
     const [termoNewsletter, setTermoNewsletter] = useState("");
     const [paginaArtigos, setPaginaArtigos] = useState(1);
@@ -154,11 +158,14 @@ export const Blog = () => {
             return;
         }
 
-        setActiveContent(contentId);
         setTermoArtigos("");
         setTermoNewsletter("");
         setPaginaArtigos(1);
         setPaginaNewsletter(1);
+        setSearchParams(
+            contentId === "newsletter" ? { conteudo: "newsletter" } : {},
+            { replace: true },
+        );
     };
 
     useEffect(() => {

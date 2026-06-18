@@ -6,6 +6,7 @@ import {
     obterCategoriasPost,
     obterImagemPost,
     obterTagPost,
+    isNewsletterPost,
     removerTagsHtml,
 } from "../../infrastructure/api/blog.js";
 import "../Blog/blog.css";
@@ -92,6 +93,9 @@ export const Artigo = () => {
     const categorias = obterCategoriasPost(post);
     const imagem = obterImagemPost(post);
     const conteudo = post.content?.rendered || "";
+    const blogBackPath = isNewsletterPost(post)
+        ? "/blog?conteudo=newsletter"
+        : "/blog";
 
     return (
         <main>
@@ -99,7 +103,7 @@ export const Artigo = () => {
                 <div className="section-container">
                     <article className="artigo-detail">
                         <UnderlineLink
-                            to="/blog"
+                            to={blogBackPath}
                             className="artigo-back-link"
                             direction="right-to-left"
                         >

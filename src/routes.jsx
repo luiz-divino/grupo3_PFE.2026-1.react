@@ -14,11 +14,24 @@ import { Entrar } from "./pages/Entrar/Entrar";
 import { Webinars } from "./pages/Webinars/Webinars";
 
 const ScrollToTop = () => {
-    const { pathname } = useLocation();
+    const { hash, pathname } = useLocation();
 
     useEffect(() => {
+        if (hash) {
+            window.requestAnimationFrame(() => {
+                const target = document.getElementById(
+                    decodeURIComponent(hash.slice(1)),
+                );
+
+                if (target) {
+                    target.scrollIntoView({ block: "start", behavior: "auto" });
+                }
+            });
+            return;
+        }
+
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    }, [pathname]);
+    }, [hash, pathname]);
 
     return null;
 };
