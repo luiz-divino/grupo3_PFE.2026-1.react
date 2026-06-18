@@ -26,9 +26,6 @@
     text-decoration: none;
 }
 
-.artigo-back-link:hover {
-    text-decoration: underline;
-}
 
 .artigo-header {
     display: flex;
@@ -73,7 +70,7 @@
 .artigo-cover img {
     display: block;
     width: 100%;
-    max-height: 420px;
+    max-height: 520px;
     object-fit: cover;
 }
 
