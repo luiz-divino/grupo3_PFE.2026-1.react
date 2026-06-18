@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
     buscarPostPorId,
     formatarDataPublicacao,
@@ -10,6 +10,7 @@ import {
 } from "../../infrastructure/api/blog.js";
 import "../Blog/blog.css";
 import "./artigo.css";
+import UnderlineLink from "../../components/UnderlineLink/UnderlineLink.jsx";
 
 export const Artigo = () => {
     const { id } = useParams();
@@ -70,9 +71,13 @@ export const Artigo = () => {
                     <div className="section-container">
                         <div className="artigo-feedback artigo-feedback--error">
                             <p>{error || "Artigo não encontrado."}</p>
-                            <Link to="/blog" className="artigo-back-link">
+                            <UnderlineLink
+                                href="/blog"
+                                className="artigo-back-link"
+                                direction="right-to-left"
+                            >
                                 Voltar ao blog
-                            </Link>
+                            </UnderlineLink>
                         </div>
                     </div>
                 </section>
@@ -93,9 +98,13 @@ export const Artigo = () => {
             <section className="artigo-section">
                 <div className="section-container">
                     <article className="artigo-detail">
-                        <Link to="/blog" className="artigo-back-link">
+                        <UnderlineLink
+                            to="/blog"
+                            className="artigo-back-link"
+                            direction="right-to-left"
+                        >
                             &larr; Voltar ao blog
-                        </Link>
+                        </UnderlineLink>
 
                         <header className="artigo-header">
                             <span className={`blog-tag ${tagClasse}`}>
