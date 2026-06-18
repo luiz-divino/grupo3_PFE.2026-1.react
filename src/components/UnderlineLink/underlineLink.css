@@ -1,0 +1,36 @@
+.underline-link {
+    font-weight: 800;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #1a4fc4;
+    padding-bottom: 2px; /* espaço para o underline não encostar no texto */
+    cursor: pointer;
+}
+
+/* Pseudo-elemento que será o underline */
+.underline-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px; /* espessura do traço */
+    background-color: #1a4fc4; /* cor do underline */
+    transform: scaleX(0); /* começa invisível */
+    transition: transform 0.5s ease; /* "lento" – ajuste a duração se quiser */
+}
+
+/* Direção da animação */
+.underline-link.left-to-right::after {
+    transform-origin: left; /* cresce da esquerda para a direita */
+}
+
+.underline-link.right-to-left::after {
+    transform-origin: right; /* cresce da direita para a esquerda */
+}
+
+/* Ao passar o mouse, expande */
+.underline-link:hover::after {
+    transform: scaleX(1);
+}
