@@ -278,11 +278,6 @@ Atuando como **Scrum Master & Desenvolvedor Frontend**, facilitei a organizaçã
 - Fortalecimento de habilidades de comunicação, colaboração, gestão de tempo e liderança servidora.
 - Aplicação de Scrum em um contexto acadêmico com dinâmica próxima a um projeto profissional.
 
-
-## Agradecimentos
-
-Agradecemos à **Associação de Conselheiros do Brasil (AC Brasil)** pela oportunidade de trabalhar em um desafio com contexto real, ao(a) professor(a) **`<nome-do-professor>`** pela orientação durante a disciplina e à **`<nome-da-universidade>`** pelo ambiente de aprendizagem, colaboração e desenvolvimento profissional.
-
 ---
 
 Desenvolvido por uma equipe de estudantes de Engenharia de Software, com foco em qualidade, colaboração e entrega de valor para um cliente real.
